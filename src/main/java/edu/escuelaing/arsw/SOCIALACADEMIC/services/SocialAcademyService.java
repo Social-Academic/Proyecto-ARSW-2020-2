@@ -15,7 +15,7 @@ public interface SocialAcademyService {
     List<Usuario> findAll();
     Usuario findUsuarioById(int id);
     void saveUsuario(Usuario usuario);
-    void actualizarDatosBasicos(Usuario usuario, int id);
+    void actualizarDatosBasicos(String[] datosUsuario, int id);
     void uploadImagenPerfil(int id, MultipartFile imagenUsuario) throws IOException;
 
 }

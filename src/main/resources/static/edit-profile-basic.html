@@ -137,16 +137,16 @@
                     <div class="form-group gender">
                       <span class="custom-label"><strong>Genero: </strong></span>
                       <label class="radio-inline">
-                        <input type="radio" name="optradio" id="Masculino">Masculino
+                        <input type="radio" name="optradio" id="Masculino" value="Masculino" onclick="app.setGenero(this.value)">Masculino
                       </label>
                       <label class="radio-inline">
-                        <input type="radio" name="optradio" id="Femenino">Femenino
+                        <input type="radio" name="optradio" id="Femenino" value="Femenino" onclick="app.setGenero(this.value)">Femenino
                       </label>
                     </div>
                     <div class="row">
                       <div class="form-group col-xs-6">
                         <label for="city"> Mi ciudad</label>
-                        <input id="city" class="form-control input-group-lg" type="text" name="city" title="Enter city" placeholder="Bogota" />
+                        <input id="city" class="form-control input-group-lg" type="text"  title="Enter city" placeholder="Bogota" />
                       </div>
                       <div class="form-group col-xs-6">
                         <label for="country">Mi pais</label>
@@ -159,7 +159,7 @@
                         <textarea id="my-info" name="information" class="form-control" placeholder="¿Quien eres?" rows="4" cols="400"></textarea>
                       </div>
                     </div>
-                    <button class="btn btn-primary">Guardar</button>
+                    <button class="btn btn-primary" onclick="app.actualizarInformacionBasicaUsuario()">Guardar</button>
                   </form>
                 </div>
               </div>
@@ -180,6 +180,8 @@
     <script src="js/jquery.sticky-kit.min.js"></script>
     <script src="js/jquery.scrollbar.min.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/apiclient.js"></script>
     
   </body>
 </html>

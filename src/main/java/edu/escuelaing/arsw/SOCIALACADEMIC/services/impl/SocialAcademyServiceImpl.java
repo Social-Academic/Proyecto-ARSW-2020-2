@@ -43,15 +43,15 @@ public class SocialAcademyServiceImpl implements SocialAcademyService{
     }
     
 	@Override
-	public void actualizarDatosBasicos(Usuario usuario, int id) {
+	public void actualizarDatosBasicos(String[] datosUsuario, int id) {
 		Usuario temp = findUsuarioById(id);
-        temp.setNombre(usuario.getNombre());
-        temp.setApellido(usuario.getApellido());
-        temp.setFecha(usuario.getFecha());
-        temp.setGenero(usuario.getGenero());
-        temp.setCiudad(usuario.getCiudad());
-        temp.setPais(usuario.getPais());
-        temp.setDescripcion(usuario.getDescripcion());
+		if (datosUsuario[0]!=null){temp.setNombre(datosUsuario[0]);}
+        if (datosUsuario[1]!=null){temp.setApellido(datosUsuario[1]);}
+        if (datosUsuario[2]!=null){temp.setFecha(datosUsuario[2]);}
+        if (datosUsuario[3]!=null){temp.setGenero(datosUsuario[3]);}
+        if (datosUsuario[4]!=null){temp.setCiudad(datosUsuario[4]);}
+        if (datosUsuario[5]!=null){temp.setPais(datosUsuario[5]);}
+        if (datosUsuario[6]!=null){temp.setDescripcion(datosUsuario[6]);}
         saveUsuario(temp);
 	}
 
