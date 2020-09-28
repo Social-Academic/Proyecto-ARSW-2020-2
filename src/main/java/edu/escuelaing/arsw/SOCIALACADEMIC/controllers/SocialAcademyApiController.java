@@ -21,7 +21,7 @@ public class SocialAcademyApiController {
     @Qualifier("socialAcademyServiceImpl")
     SocialAcademyService sas;
 
-    @RequestMapping(method= RequestMethod.PUT, value="/{id}")
+    @RequestMapping(method = RequestMethod.PUT, value="/{id}")
     public ResponseEntity<?> actualizarUsuario(@PathVariable int id, @RequestBody String[] datosUsuario) {
         sas.actualizarDatosBasicos(datosUsuario, id);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);

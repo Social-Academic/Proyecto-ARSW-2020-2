@@ -14,6 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.aspectj.weaver.tools.Trace;
+import org.hibernate.type.TrueFalseType;
+
 @Entity
 @Table(name = "usuarios")
 public class Usuario implements Serializable {
@@ -25,11 +28,13 @@ public class Usuario implements Serializable {
 	private String nombre;
 	@Column(length = 100, updatable = true)
 	private String apellido;
+	@Column(length = 10, updatable = true)
 	private String fecha;
 	@Column(length = 1, updatable = true)
 	private String genero;
 	@Column(length = 100, updatable = true)
 	private String ciudad;
+	@Column(unique = true)
 	private String pais;
 	private String password;
 	@Column(length = 100, unique = true, updatable = false)

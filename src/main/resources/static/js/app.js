@@ -5,6 +5,7 @@ var app =(function (){
         genero=g;
     }
     function updateBasicInfo(){
+        console.log("llego");
         apiclient.actualizarUsuario(0,$('#nombre').val(),$('#apellido').val(),$('#nacimiento').val(),genero,$("#city").val(),$('#pais').val(),$("#my-info").val());
     }
 
@@ -13,7 +14,6 @@ var app =(function (){
         setGenero: function (genero) {
             setGender(genero);
         },
-
         actualizarInformacionBasicaUsuario: function () {
             updateBasicInfo();
         }

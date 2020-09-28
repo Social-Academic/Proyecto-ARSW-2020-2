@@ -1,10 +1,17 @@
-const apiUrl = "http://localhost:8080/socialacademy/"
 apiclient = (function () {
-        let url = "http://localhost:8080/socialacademy/"
+        let url = "http://localhost:8080/socialacedemy/"
         return {
             actualizarUsuario: function (id, nombre, apellido, fecha, genero, ciudad, pais, descripcion) {
+                console.log(id);
+                console.log(apellido);
+                console.log(fecha);
+                console.log(genero);
+                console.log(ciudad);
+                console.log(pais);
+                console.log(descripcion);
+                console.log(url + id);
                 var promise = $.ajax({
-                    url: "/socialacademy" + id,
+                    url: url + id,
                     type: 'PUT',
                     data: JSON.stringify([nombre, apellido, fecha, genero, ciudad, pais, descripcion]),
                     contentType: "application/json"
