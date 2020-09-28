@@ -1,4 +1,4 @@
-package edu.escuelaing.arsw.SOCIALACADEMIC.persistence;
+package edu.escuelaing.arsw.SOCIALACADEMIC.model;
 
 import java.io.Serializable;
 
@@ -26,4 +26,12 @@ public class Amigo implements Serializable {
 		this.id = id;
 	}
 
+	public int getAmigo() {
+		return amigo;
+	}
+
+	public void setAmigo(int amigo) {
+		this.amigo = amigo;
+	}
+	
 }
