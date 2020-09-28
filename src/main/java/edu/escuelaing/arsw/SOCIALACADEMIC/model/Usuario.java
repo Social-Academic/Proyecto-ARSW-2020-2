@@ -21,18 +21,54 @@ public class Usuario implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
-	@Column(name = "Prueba"length = 100, updatable = true)
+	@Column(length = 100, updatable = true)
 	private String nombre;
+	@Column(length = 100, updatable = true)
+	private String apellido;
+	private String fecha;
+	@Column(length = 1, updatable = true)
+	private String genero;
+	@Column(length = 100, updatable = true)
+	private String ciudad;
+	private String pais;
 	private String password;
 	@Column(length = 100, unique = true, updatable = false)
 	private String correo;
 	@Column(length = 360, updatable = true)
 	private String descripcion;
+	@Column(length = 100, updatable = true)
+	private String universidad;
+	@Column(length = 4, updatable = true, name = "inicio_universidad")
+	private String inicioUniversidad;
+	@Column(length = 4, updatable = true, name = "fin_universidad")
+	private String finUniversidad;
+	@Column(name = "descripcion_universidad")
+	private String descripcionUniversiad;
+	private boolean graduado;
+	@Column(length = 100, updatable = true)
+	private String empresa;
+	@Column(length = 100, updatable = true)
+	private String cargo;
+	@Column(length = 4, updatable = true, name = "inicio_Trabajo")
+	private String inicioTrabajo;
+	@Column(length = 4, updatable = true, name = "fin_Trabajo")
+	private String finTrabajo;
+	@Column(length = 100, updatable = true, name = "ciudad_Trabajo")
+	private String ciudadTrabajo;
+	@Column(name = "descripcion_trabajo")
+	private String descripcionTrabajo;
+
+
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "FK_INTERESES")
+	private List<Interes> intereses;
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "FK_USUARIO")
 	private List<Amigo> amigos;
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "FK_publicaciones")
+
+
 	private List<Publicacion> publicaciones;
 
 	public int getId() {
@@ -93,4 +129,143 @@ public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public String getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
+	public String getCiudad() {
+		return ciudad;
+	}
+
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
+
+	public String getUniversidad() {
+		return universidad;
+	}
+
+	public void setUniversidad(String universidad) {
+		this.universidad = universidad;
+	}
+
+	public String getPais() {
+		return pais;
+	}
+
+	public void setPais(String pais) {
+		this.pais = pais;
+	}
+
+	public String getInicioUniversidad() {
+		return inicioUniversidad;
+	}
+
+	public void setInicioUniversidad(String inicioUniversidad) {
+		this.inicioUniversidad = inicioUniversidad;
+	}
+
+	public String getFinUniversidad() {
+		return finUniversidad;
+	}
+
+	public void setFinUniversidad(String finUniversidad) {
+		this.finUniversidad = finUniversidad;
+	}
+
+	public String getDescripcionUniversiad() {
+		return descripcionUniversiad;
+	}
+
+	public void setDescripcionUniversiad(String descripcionUniversiad) {
+		this.descripcionUniversiad = descripcionUniversiad;
+	}
+
+	public boolean isGraduado() {
+		return graduado;
+	}
+
+	public void setGraduado(boolean graduado) {
+		this.graduado = graduado;
+	}
+
+	public String getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(String empresa) {
+		this.empresa = empresa;
+	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+
+	public String getInicioTrabajo() {
+		return inicioTrabajo;
+	}
+
+	public void setInicioTrabajo(String inicioTrabajo) {
+		this.inicioTrabajo = inicioTrabajo;
+	}
+
+	public String getFinTrabajo() {
+		return finTrabajo;
+	}
+
+	public void setFinTrabajo(String finTrabajo) {
+		this.finTrabajo = finTrabajo;
+	}
+
+	public String getCiudadTrabajo() {
+		return ciudadTrabajo;
+	}
+
+	public void setCiudadTrabajo(String ciudadTrabajo) {
+		this.ciudadTrabajo = ciudadTrabajo;
+	}
+
+	public String getDescripcionTrabajo() {
+		return descripcionTrabajo;
+	}
+
+	public void setDescripcionTrabajo(String descripcionTrabajo) {
+		this.descripcionTrabajo = descripcionTrabajo;
+	}
+
+	public List<Interes> getIntereses() {
+		return intereses;
+	}
+
+	public void setIntereses(List<Interes> intereses) {
+		this.intereses = intereses;
+	}
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
 }
