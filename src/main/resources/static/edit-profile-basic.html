@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="This is social network html5 template available in themeforest......" />
+		<meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page" />
+		<meta name="robots" content="index, follow" />
+		<title>Edit Profile | Edit Profile Page</title>
+
+    <!-- Stylesheets
+    ================================================= -->
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/ionicons.min.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    
+    <!--Google Font-->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i" rel="stylesheet">
+    
+    <!--Favicon-->
+    <link rel="shortcut icon" type="image/png" href="images/fav.png"/>
+	</head>
+  <body>
+
+    <!-- Header
+    ================================================= -->
+    <header id="header">
+      <nav class="navbar navbar-default navbar-fixed-top menu">
+        <div class="container">
+
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="newsfeed.html"><img src="images/logo.png" alt="logo" /></a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right main-menu">
+
+              <li><a href="newsfeed.html">Principal</a></li>
+              <li><a href="timeline.html">Perfil</a></li>
+              <li><a href="newsfeed-messages.html">Chats</a></li>
+              <li >
+                <a href="index-register.html">Cerrar sesion</a>
+              </li>
+            </ul>
+            <form class="navbar-form navbar-right hidden-sm">
+              <div class="form-group">
+                <i class="icon ion-android-search"></i>
+                <input type="text" class="form-control" placeholder="Search friends, photos, videos">
+              </div>
+            </form>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container -->
+      </nav>
+    </header>
+    <!--Header End-->
+
+    <div class="container">
+
+      <!-- Timeline
+      ================================================= -->
+      <div class="timeline">
+        <div class="timeline-cover">
+
+          <!--Timeline Menu for Large Screens-->
+          <div class="timeline-nav-bar hidden-sm hidden-xs">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="profile-info">
+                  <img src="http://placehold.it/300x300" alt="" class="img-responsive profile-photo" />
+                  <h3 id = nombreUsuario>nombreUsuario</h3>
+                  <p class="text-muted" id = puesto>puesto</p>
+                </div>
+              </div>
+              <div class="col-md-9">
+                <ul class="list-inline profile-menu">
+                  <li><a >Biografia</a></li>
+                  <li><a class="active">Sobre mi</a></li>
+                  <li><a >Fotos</a></li>
+                  <li><a >Amigos</a></li>
+                </ul>
+                <ul class="follow-me list-inline">
+                  <li><button class="btn-primary">Agregar</button></li>
+                </ul>
+              </div>
+            </div>
+          </div><!--Timeline Menu for Large Screens End-->
+
+        </div>
+        <div id="page-contents">
+          <div class="row">
+            <div class="col-md-3">
+              
+              <!--Edit Profile Menu-->
+              <ul class="edit-menu">
+              	<li class="active"><i class="icon ion-ios-information-outline"></i><a href="edit-profile-basic.html">Informacion basica</a></li>
+              	<li><i class="icon ion-ios-briefcase-outline"></i><a href="edit-profile-work-edu.html">Educacion y trabajo</a></li>
+              	<li><i class="icon ion-ios-heart-outline"></i><a href="edit-profile-interests.html">Mis intereses</a></li>
+              	<li><i class="icon ion-ios-locked-outline"></i><a href="edit-profile-password.html">Cambiar contraseña</a></li>
+              </ul>
+            </div>
+            <div class="col-md-7">
+
+              <!-- Basic Information
+              ================================================= -->
+              <div class="edit-profile-container">
+                <div class="block-title">
+                  <h4 class="grey"><i class="icon ion-android-checkmark-circle"></i>Editar Informacion basica</h4>
+                  <div class="line"></div>
+                </div>
+                <div class="edit-block">
+                  <form name="basic-info" id="basic-info" class="form-inline">
+                    <div class="row">
+                      <div class="form-group col-xs-6">
+                        <label for="firstname">Nombre</label>
+                        <input id="nombre" class="form-control input-group-lg" type="text" placeholder="Nombre"/>
+                      </div>
+                      <div class="form-group col-xs-6">
+                        <label for="lastname" class="">Apellido</label>
+                        <input id="apellido" class="form-control input-group-lg" type="text" placeholder="Apellido" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <p class="custom-label"><strong>Fecha de nacimiento</strong></p>
+                      <div class="form-group col-sm-3 col-xs-6">
+                        <input type="date" id="nacimiento">
+                      </div>  
+                    </div>
+                    <div class="form-group gender">
+                      <span class="custom-label"><strong>Genero: </strong></span>
+                      <label class="radio-inline">
+                        <input type="radio" name="optradio" id="Masculino">Masculino
+                      </label>
+                      <label class="radio-inline">
+                        <input type="radio" name="optradio" id="Femenino">Femenino
+                      </label>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-xs-6">
+                        <label for="city"> Mi ciudad</label>
+                        <input id="city" class="form-control input-group-lg" type="text" name="city" title="Enter city" placeholder="Bogota" />
+                      </div>
+                      <div class="form-group col-xs-6">
+                        <label for="country">Mi pais</label>
+                        <input type="text" id="pais" class="form-control input-group-lg" placeholder="Mi pais">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-xs-12">
+                        <label for="my-info">Acerca de mi</label>
+                        <textarea id="my-info" name="information" class="form-control" placeholder="¿Quien eres?" rows="4" cols="400"></textarea>
+                      </div>
+                    </div>
+                    <button class="btn btn-primary">Guardar</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--preloader-->
+    <div id="spinner-wrapper">
+      <div class="spinner"></div>
+    </div>
+
+    <!-- Scripts
+    ================================================= -->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.sticky-kit.min.js"></script>
+    <script src="js/jquery.scrollbar.min.js"></script>
+    <script src="js/script.js"></script>
+    
+  </body>
+</html>
