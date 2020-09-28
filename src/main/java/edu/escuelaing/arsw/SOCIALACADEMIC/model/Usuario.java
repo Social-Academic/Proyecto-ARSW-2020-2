@@ -57,7 +57,8 @@ public class Usuario implements Serializable {
 	private String ciudadTrabajo;
 	@Column(name = "descripcion_trabajo")
 	private String descripcionTrabajo;
-
+	
+	private String fotoPerfil;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "FK_INTERESES")
@@ -67,7 +68,6 @@ public class Usuario implements Serializable {
 	private List<Amigo> amigos;
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "FK_publicaciones")
-
 
 	private List<Publicacion> publicaciones;
 
@@ -263,6 +263,14 @@ public class Usuario implements Serializable {
 
 	public void setIntereses(List<Interes> intereses) {
 		this.intereses = intereses;
+	}
+	
+	public String getFotoPerfil() {
+		return fotoPerfil;
+	}
+
+	public void setFotoPerfil(String fotoPerfil) {
+		this.fotoPerfil = fotoPerfil;
 	}
 
 	public static long getSerialVersionUID() {

@@ -33,5 +33,5 @@ public class Amigo implements Serializable {
 	public void setAmigo(int amigo) {
 		this.amigo = amigo;
 	}
-	
+
 }

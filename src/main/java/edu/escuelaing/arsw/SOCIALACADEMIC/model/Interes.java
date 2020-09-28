@@ -12,23 +12,25 @@ import java.io.Serializable;
 @Table(name = "intereses")
 public class Interes implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int id;
-    @Column(unique = true)
-    private String interes;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private int id;
+	@Column(unique = true)
+	private String interes;
 
-    public int getId(){ return id;}
+	public int getId() {
+		return id;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public String getInteres() {
-        return interes;
-    }
+	public String getInteres() {
+		return interes;
+	}
 
-    public void setAmigo(String interes) {
-        this.interes = interes;
-    }
+	public void setAmigo(String interes) {
+		this.interes = interes;
+	}
 }

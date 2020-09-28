@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 //falta
 @Entity
 @Table(name = "chats")
@@ -15,5 +16,5 @@ public class Chat {
 	private int id;
 	@Column(unique = true)
 	private int amigo;
-	
+
 }

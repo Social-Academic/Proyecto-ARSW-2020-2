@@ -3,11 +3,15 @@ package edu.escuelaing.arsw.SOCIALACADEMIC.controllers;
 
 import edu.escuelaing.arsw.SOCIALACADEMIC.model.Usuario;
 import edu.escuelaing.arsw.SOCIALACADEMIC.services.SocialAcademyService;
+
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping(value = "/socialacedemy")
@@ -19,19 +23,21 @@ public class SocialAcademyApiController {
 
     @RequestMapping(method= RequestMethod.PUT, value="/{id}")
     public ResponseEntity<?> actualizarFuncion(@PathVariable int id, @RequestBody Usuario usuario) {
-        Usuario temp = sas.findUsuarioById(id);
-        temp.setNombre(usuario.getNombre());
-        temp.setApellido(usuario.getApellido());
-        temp.setFecha(usuario.getFecha());
-        temp.setGenero(usuario.getGenero());
-        temp.setCiudad(usuario.getCiudad());
-        temp.setPais(usuario.getPais());
-        temp.setDescripcion(usuario.getDescripcion());
-        sas.saveUsuario(temp);
+        sas.actualizarDatosBasicos(usuario, id);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
-    public Usuario obtenerUsuario(@PathVariable int id){
-        return sas.findUsuarioById(id);
+    public ResponseEntity<?> obtenerUsuario(@PathVariable int id){
+        return new ResponseEntity<>(sas.findUsuarioById(id), HttpStatus.ACCEPTED);
+    }
+    @RequestMapping(method = RequestMethod.POST, value = "/upload")
+    public ResponseEntity<?> uploadImagenUsuario(@RequestParam MultipartFile imagenUsuario, @RequestParam int idUsuario){
+    	try {
+			sas.uploadImagenPerfil(idUsuario, imagenUsuario);
+			return new ResponseEntity<>( HttpStatus.ACCEPTED);
+		} catch (IOException e) {
+			return new ResponseEntity<>( e.getMessage(), HttpStatus.NOT_FOUND);
+		}
+    	
     }
 }
