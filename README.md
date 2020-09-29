@@ -64,7 +64,7 @@
 >   - ![](img/modelo%20bdd.png)
 
 ## Diagrama de clases
->   - ![](img/diagrama%20de%20clases.png)
+>   - ![](img/DiagramaClases.jpg)
 
 ## Diagrama de componentes 
 >   -![](img/diagaramaComponents.png)
