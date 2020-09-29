@@ -30,7 +30,7 @@ public class Usuario implements Serializable {
 	private String apellido;
 	@Column(length = 10, updatable = true)
 	private String fecha;
-	@Column(length = 1, updatable = true)
+	@Column(length = 15, updatable = true)
 	private String genero;
 	@Column(length = 100, updatable = true)
 	private String ciudad;
