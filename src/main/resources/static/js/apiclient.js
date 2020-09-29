@@ -16,11 +16,17 @@ apiclient = (function () {
                 });
             },
             actualizarImagenUsuario(formData){
+
+                console.log(url+"upload");
+                window.alert("holi");
                 var promise = $.ajax({
-                    url: url+"/upload",
+                    url: url+"upload",
                     type: 'POST',
-                    data: formData,
-                    contentType: "application/json"
+                    body: formData,
+                    processData: false,
+                    contentType: false,
+                    mimeType: "multipart/form-data"
+
                 });
                 promise.then(function () {
                     console.info("OK");
