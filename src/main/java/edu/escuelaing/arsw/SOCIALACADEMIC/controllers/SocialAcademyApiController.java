@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping(value = "/socialacedemy")
+
 public class SocialAcademyApiController {
 
     @Autowired
