@@ -17,8 +17,6 @@ apiclient = (function () {
             },
             actualizarImagenUsuario(formData){
 
-                console.log(url+"upload");
-                window.alert("holi");
                 var promise = $.ajax({
                     url: url+"upload",
                     type: 'POST',
