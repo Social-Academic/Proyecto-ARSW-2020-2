@@ -21,6 +21,7 @@ apiclient = (function () {
                     url: url+"upload",
                     type: 'POST',
                     body: formData,
+                    enctype : 'multipart/form-data', 
                     processData: false,
                     contentType: false,
                     mimeType: "multipart/form-data"

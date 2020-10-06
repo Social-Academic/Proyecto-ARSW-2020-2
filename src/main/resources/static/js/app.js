@@ -6,7 +6,7 @@ var app =(function (){
     }
     function setFile(){
 
-        imagen = document.getElementById("imagenPerfil").files[0];
+        imagen = $("#imagenPerfil")[0].files[0];
 
     }
     function updateBasicInfo(){
@@ -15,7 +15,7 @@ var app =(function (){
         if(imagen !== ""){
             console.log("entre en el condicional");
             var formData = new FormData();
-            formData.append("imagenUsuario", imagen,$("#imagenPerfil").val());
+            formData.append("imagenUsuario", imagen);
             formData.append("idUsuario",0);
             apiclient.actualizarImagenUsuario(formData);
         }

@@ -1,7 +1,154 @@
 <!DOCTYPE html>
-<html lang="es">
-    <head></head>
-    <body>
-        Hello word
-    </body>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="This is social network html5 template available in themeforest......" />
+		<meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page" />
+		<meta name="robots" content="index, follow" />
+		<title>Social academy</title>
+
+    <!-- Stylesheets
+    ================================================= -->
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/ionicons.min.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    
+    <!--Google Font-->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i" rel="stylesheet">
+    
+    <!--Favicon-->
+    <link rel="shortcut icon" type="image/png" href="images/fav.png"/>
+	</head>
+	<body>
+
+    <!-- Header
+    ================================================= -->
+		
+    <!--Header End-->
+    
+    <!-- Landing Page Contents
+    ================================================= -->
+    <div id="lp-register">
+    	<div class="container wrapper">
+        <div class="row">
+        	<div class="col-sm-5">
+            <div class="intro-texts">
+            	<h1 class="text-white">Crea grandes amistades!!!</h1>
+            	<p></p>
+            </div>
+          </div>
+        	<div class="col-sm-6 col-sm-offset-1">
+            <div class="reg-form-container"> 
+            
+              <!-- Register/Login Tabs-->
+              <div class="reg-options">
+                <ul class="nav nav-tabs">
+                  <li class="active"><a href="#register" data-toggle="tab">Registrate</a></li>
+                  <li><a href="#login" data-toggle="tab">Ingresar</a></li>
+                </ul><!--Tabs End-->
+              </div>
+              
+              <!--Registration Form Contents-->
+              <div class="tab-content">
+                <div class="tab-pane active" id="register">
+                  <h3>Registrate ahora!!</h3>
+                  <p class="text-muted">Miles de personas se estan uniendo</p>
+                  
+                  <!--Register Form-->
+                  <form name="registration_form" id='registration_form' class="form-inline">
+                    <div class="row">
+                      <div class="form-group col-xs-6">
+                        <label for="firstname" class="sr-only">Nombre</label>
+                        <input id="firstname" class="form-control input-group-lg" type="text" name="firstname" title="Enter first name" placeholder="Nombre"/>
+                      </div>
+                      <div class="form-group col-xs-6">
+                        <label for="lastname" class="sr-only">Apellido</label>
+                        <input id="lastname" class="form-control input-group-lg" type="text" name="lastname" title="Enter last name" placeholder="Apellido"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-xs-12">
+                        <label for="email" class="sr-only">Correo</label>
+                        <input id="email" class="form-control input-group-lg" type="text" name="Email" title="Enter Email" placeholder="Correo"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-xs-12">
+                        <label for="password" class="sr-only">Contraseña</label>
+                        <input id="password" class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Contraseña"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-xs-12">
+                        <label for="password" class="sr-only">Contraseña</label>
+                        <input id="fecha" class="form-control input-group-lg" type="date" />
+                      </div>
+                    </div>
+                    <div class="form-group gender">
+                      <label class="radio-inline">
+                        <input type="radio" name="optradio" checked>Masculino
+                      </label>
+                      <label class="radio-inline">
+                        <input type="radio" name="optradio">Femenino
+                      </label>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-xs-6">
+                        <label for="city" class="sr-only">City</label>
+                        <input id="city" class="form-control input-group-lg reg_name" type="text" name="city" title="Enter city" placeholder="Tu ciudad"/>
+                      </div>
+                      <div class="form-group col-xs-6">
+                        <label for="country" class="sr-only"></label>
+                        <input type="text" class="form-control input-group-lg reg_name">
+                      </div>
+                    </div>
+                  </form><!--Register Now Form Ends-->
+                  <button class="btn btn-primary">Registrate</button>
+                </div><!--Registration Form Contents Ends-->
+                
+                <!--Login-->
+                <div class="tab-pane" id="login">
+                  <h3>Ingresa</h3>                  
+                  <!--Login Form-->
+                  <form name="Login_form" id='Login_form'>
+                     <div class="row">
+                      <div class="form-group col-xs-12">
+                        <label for="my-email" class="sr-only">Correo</label>
+                        <input id="my-email" class="form-control input-group-lg" type="text" name="Email" title="Enter Email" placeholder="Tu correo"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-xs-12">
+                        <label for="my-password" class="sr-only">Contraseña</label>
+                        <input id="my-password" class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Contraseña"/>
+                      </div>
+                    </div>
+                  </form><!--Login Form Ends--> 
+                  <br>
+                  <br>
+                  <button class="btn btn-primary">Login Now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--preloader-->
+    <div id="spinner-wrapper">
+      <div class="spinner"></div>
+    </div>
+
+    <!-- Scripts
+    ================================================= -->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.appear.min.js"></script>
+		<script src="js/jquery.incremental-counter.js"></script>
+    <script src="js/script.js"></script>
+    
+	</body>
 </html>

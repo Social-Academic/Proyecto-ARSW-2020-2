@@ -32,7 +32,7 @@ public class SocialAcademyApiController {
         return new ResponseEntity<>(sas.findUsuarioById(id), HttpStatus.ACCEPTED);
     }
     @RequestMapping(method = RequestMethod.POST, value ="/upload")
-    public ResponseEntity<?> uploadImagenUsuario(@RequestParam MultipartFile imagenUsuario, @RequestParam int idUsuario){
+    public ResponseEntity<?> uploadImagenUsuario(@RequestParam("imagenUsuario") MultipartFile imagenUsuario, @RequestParam("idUsuario") int idUsuario){
     	try {
             System.out.println("entre a guardar la imagen");
 			sas.uploadImagenPerfil(idUsuario, imagenUsuario);
