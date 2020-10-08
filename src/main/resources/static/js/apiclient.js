@@ -2,6 +2,7 @@ apiclient = (function () {
         let url = "http://localhost:8080/socialacedemy/"
         return {
             actualizarUsuario: function (id, nombre, apellido, fecha, genero, ciudad, pais, descripcion) {
+                console.log(JSON.stringify([nombre, apellido, fecha, genero, ciudad, pais, descripcion]));
                 var promise = $.ajax({
                     url: url + id,
                     type: 'PUT',

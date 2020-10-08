@@ -22,14 +22,15 @@ public class SocialAcademyApiController {
     @Qualifier("socialAcademyServiceImpl")
     SocialAcademyService sas;
 
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    public ResponseEntity<?> obtenerUsuario(@PathVariable int id){
+        return new ResponseEntity<>(sas.findUsuarioById(id), HttpStatus.ACCEPTED);
+    }
+    
     @RequestMapping(method = RequestMethod.PUT, value="/{id}")
     public ResponseEntity<?> actualizarUsuario(@PathVariable int id, @RequestBody String[] datosUsuario) {
         sas.actualizarDatosBasicos(datosUsuario, id);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
-    }
-    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
-    public ResponseEntity<?> obtenerUsuario(@PathVariable int id){
-        return new ResponseEntity<>(sas.findUsuarioById(id), HttpStatus.ACCEPTED);
     }
     @RequestMapping(method = RequestMethod.POST, value ="/upload")
     public ResponseEntity<?> uploadImagenUsuario(@RequestParam("imagenUsuario") MultipartFile imagenUsuario, @RequestParam("idUsuario") int idUsuario){
@@ -40,6 +41,6 @@ public class SocialAcademyApiController {
 		} catch (IOException e) {
 			return new ResponseEntity<>( e.getMessage(), HttpStatus.NOT_FOUND);
 		}
-    	
     }
+    
 }
