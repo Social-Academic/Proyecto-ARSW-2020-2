@@ -69,6 +69,6 @@
 ## Diagrama de componentes 
 >   -![](img/diagaramaComponents.png)
 ## Diagrama de despliegue
-> 	-![](img/diagaramaComponents.png)
+> 	-![](img/despliegue.png)
 ## Mockups
 >[![pidoco](https://pidoco.com/sites/all/themes/pidoco2011/images/logo.gif)](https://pidoco.com/rabbit/result/view/316672/page335562697/plain?invitation=6lZuLF9HbXn40TSgMoLrRIIHftfGuDtCi0eGbtOf)
