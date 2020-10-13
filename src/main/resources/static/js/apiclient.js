@@ -1,12 +1,27 @@
 apiclient = (function () {
-        let url = "http://localhost:8080/socialacedemy/"
+        let url = "usuarios/"
         return {
             actualizarUsuario: function (id, nombre, apellido, fecha, genero, ciudad, pais, descripcion) {
                 console.log(JSON.stringify([nombre, apellido, fecha, genero, ciudad, pais, descripcion]));
                 var promise = $.ajax({
-                    url: url + id,
+                    url: url + "informacionBasica/"+id,
                     type: 'PUT',
                     data: JSON.stringify([nombre, apellido, fecha, genero, ciudad, pais, descripcion]),
+                    contentType: "application/json"
+                });
+                promise.then(function () {
+                    console.info("OK");
+                    //callback();
+                }, function () {
+                    console.info("ERROR");
+                });
+            },
+            actualizarInformacionWork(id, empresa, cargo, inicio, fin, ciudad, descripcion){
+                console.log(JSON.stringify([empresa, cargo, inicio, fin, ciudad, descripcion]))
+                var promise = $.ajax({
+                    url: url + "informacionTrabajo/"+id,
+                    type: 'PUT',
+                    data: JSON.stringify([empresa, cargo, inicio, fin, ciudad, descripcion]),
                     contentType: "application/json"
                 });
                 promise.then(function () {

@@ -23,13 +23,13 @@
 	</head>
   <body>
 
-    <!-- Header
+    <!-- Cabecera
     ================================================= -->
     <header id="header">
       <nav class="navbar navbar-default navbar-fixed-top menu">
         <div class="container">
 
-          <!-- Brand and toggle get grouped for better mobile display -->
+          
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
               <span class="sr-only">Toggle navigation</span>
@@ -40,7 +40,7 @@
             <a class="navbar-brand" href="newsfeed.html"><img src="images/logo.png" alt="logo" /></a>
           </div>
 
-          <!-- Collect the nav links, forms, and other content for toggling -->
+          
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right main-menu">
 
@@ -57,20 +57,19 @@
                 <input type="text" class="form-control" placeholder="Search friends, photos, videos">
               </div>
             </form>
-          </div><!-- /.navbar-collapse -->
-        </div><!-- /.container -->
+          </div>
+        </div>
       </nav>
     </header>
-    <!--Header End-->
+    <!--Fin cabecera-->
 
     <div class="container">
 
-      <!-- Timeline
-      ================================================= -->
+      
       <div class="timeline">
         <div class="timeline-cover">
 
-          <!--Timeline Menu for Large Screens-->
+          <!--Inicio menu del perfil-->
           <div class="timeline-nav-bar hidden-sm hidden-xs">
             <div class="row">
               <div class="col-md-3">
@@ -92,14 +91,14 @@
                 </ul>
               </div>
             </div>
-          </div><!--Timeline Menu for Large Screens End-->
+          </div><!--Fin del menu del perfil-->
 
         </div>
         <div id="page-contents">
           <div class="row">
             <div class="col-md-3">
               
-              <!--Edit Profile Menu-->
+              <!--Barra de modificacion de informacion-->
               <ul class="edit-menu">
               	<li class="active"><i class="icon ion-ios-information-outline"></i><a href="edit-profile-basic.html">Informacion basica</a></li>
               	<li><i class="icon ion-ios-briefcase-outline"></i><a href="edit-profile-work-edu.html">Educacion y trabajo</a></li>
@@ -109,7 +108,7 @@
             </div>
             <div class="col-md-7">
 
-              <!-- Basic Information
+              <!-- Informacion Basica
               ================================================= -->
               <div class="edit-profile-container">
                 <div class="block-title">
@@ -157,7 +156,7 @@
                     <div class="row">
                       <div class="form-group col-xs-6">
                         <label for="imagen">Cambiar imagen de perfil</label>
-                        <input id= imagenPerfil class="btn-primary" type="file" accept="image/*" onchange="app.setFile(this.files)" >
+                        <input id= imagenPerfil class="btn-primary" type="file" accept="image/*" onchange="app.setFile()" >
                       </div>
                     </div>
                     <div class="row">
@@ -175,13 +174,12 @@
         </div>
       </div>
     </div>
-    <!--preloader-->
+    <!--Precarga-->
     <div id="spinner-wrapper">
       <div class="spinner"></div>
     </div>
 
-    <!-- Scripts
-    ================================================= -->
+    
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.sticky-kit.min.js"></script>

@@ -14,9 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.aspectj.weaver.tools.Trace;
-import org.hibernate.type.TrueFalseType;
-
 @Entity
 @Table(name = "usuarios")
 public class Usuario implements Serializable {
@@ -43,9 +40,9 @@ public class Usuario implements Serializable {
 	private String descripcion;
 	@Column(length = 100, updatable = true)
 	private String universidad;
-	@Column(length = 4, updatable = true, name = "inicio_universidad")
+	@Column(length = 10, updatable = true, name = "inicio_universidad")
 	private String inicioUniversidad;
-	@Column(length = 4, updatable = true, name = "fin_universidad")
+	@Column(length = 10, updatable = true, name = "fin_universidad")
 	private String finUniversidad;
 	@Column(name = "descripcion_universidad")
 	private String descripcionUniversiad;
@@ -54,9 +51,9 @@ public class Usuario implements Serializable {
 	private String empresa;
 	@Column(length = 100, updatable = true)
 	private String cargo;
-	@Column(length = 4, updatable = true, name = "inicio_Trabajo")
+	@Column(length = 10, updatable = true, name = "inicio_Trabajo")
 	private String inicioTrabajo;
-	@Column(length = 4, updatable = true, name = "fin_Trabajo")
+	@Column(length = 10, updatable = true, name = "fin_Trabajo")
 	private String finTrabajo;
 	@Column(length = 100, updatable = true, name = "ciudad_Trabajo")
 	private String ciudadTrabajo;
@@ -64,10 +61,9 @@ public class Usuario implements Serializable {
 	private String descripcionTrabajo;
 	
 	private String fotoPerfil;
+	private String intereses;
+	
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "FK_INTERESES")
-	private List<Interes> intereses;
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "FK_USUARIO")
 	private List<Amigo> amigos;
@@ -75,6 +71,18 @@ public class Usuario implements Serializable {
 	@JoinColumn(name = "FK_publicaciones")
 
 	private List<Publicacion> publicaciones;
+	public Usuario() {
+		
+	}
+	public Usuario(String nombre, String apellido, String correo, String passwd, String fecha, String genero, String ciudad) {
+		this.nombre= nombre;
+		this.apellido = apellido;
+		this.correo = correo;
+		this.password = passwd;
+		this.fecha = fecha; 
+		this.genero = genero;
+		this.ciudad = ciudad; 
+	}
 
 	public int getId() {
 		return id;
@@ -261,15 +269,13 @@ public class Usuario implements Serializable {
 	public void setDescripcionTrabajo(String descripcionTrabajo) {
 		this.descripcionTrabajo = descripcionTrabajo;
 	}
-
-	public List<Interes> getIntereses() {
+	public String getIntereses() {
 		return intereses;
 	}
 
-	public void setIntereses(List<Interes> intereses) {
-		this.intereses = intereses;
+	public void setIntereses(String interese) {
+		this.intereses = interese;
 	}
-	
 	public String getFotoPerfil() {
 		return fotoPerfil;
 	}

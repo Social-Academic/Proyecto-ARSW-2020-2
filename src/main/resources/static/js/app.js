@@ -10,7 +10,6 @@ var app =(function (){
 
     }
     function updateBasicInfo(){
-        console.log("llego");
         apiclient.actualizarUsuario(0,$('#nombre').val(),$('#apellido').val(),$('#nacimiento').val(),genero,$("#city").val(),$('#pais').val(),$("#my-info").val());
         if(imagen !== ""){
             console.log("entre en el condicional");
@@ -19,6 +18,9 @@ var app =(function (){
             formData.append("idUsuario",0);
             apiclient.actualizarImagenUsuario(formData);
         }
+    }
+    function updateWorkInfo(){
+        apiclient.actualizarInformacionWork(0, $("#compañia").val(), $("#Cargo").val(), $("#desdeInicioTrabajo").val(), $("#desdeFinTrabajo").val(), $("#Ciudad").val(), $("#descriptionTrabajo").val());
     }
 
 
@@ -31,6 +33,7 @@ var app =(function (){
         },
         setFile : function(){
             setFile();
-        }
+        },
+        updatework : updateWorkInfo
     }
 })();
