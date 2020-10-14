@@ -47,7 +47,7 @@ public class SocialAcademyApiController {
     	return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
     @RequestMapping(method = RequestMethod.PUT, value= "/intereses/{id}")
-    public ResponseEntity<?> actualizarIntereses(@PathVariable int id, @RequestBody String[] datosUsuario){
+    public ResponseEntity<?> actualizarIntereses(@PathVariable int id, @RequestBody String datosUsuario){
     	sas.actualizarInterese(datosUsuario, id);
     	return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }

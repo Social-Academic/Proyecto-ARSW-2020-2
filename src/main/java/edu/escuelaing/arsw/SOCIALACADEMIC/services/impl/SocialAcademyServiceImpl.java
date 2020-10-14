@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import javax.persistence.criteria.CriteriaBuilder.In;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import edu.escuelaing.arsw.SOCIALACADEMIC.model.Interes;
 import edu.escuelaing.arsw.SOCIALACADEMIC.model.Usuario;
 import edu.escuelaing.arsw.SOCIALACADEMIC.persistence.SocialAcademyPersistence;
 import edu.escuelaing.arsw.SOCIALACADEMIC.services.SocialAcademyService;
@@ -87,6 +91,7 @@ public class SocialAcademyServiceImpl implements SocialAcademyService {
 	}
 	@Override
 	public void actualizarDatosTrabajo(String[] datosUsuario, int id) {
+		System.out.println("llego");
 		Usuario usuarioTemporal = findUsuarioById(id);
 		if(!datosUsuario[0].equals("")) {
 			usuarioTemporal.setEmpresa(datosUsuario[0]);
@@ -109,10 +114,14 @@ public class SocialAcademyServiceImpl implements SocialAcademyService {
 		saveUsuario(usuarioTemporal);
 	}
 	@Override
-	public void actualizarInterese(String[] datosUsuario, int id){
+	public void actualizarInterese(String datosUsuario, int id){
 		Usuario usuarioTemporal = findUsuarioById(id);
-		if(!datosUsuario[0].equals("")) {
-			usuarioTemporal.setIntereses(datosUsuario[0]);
+		if(!datosUsuario.equals("")) {
+			List<Interes> intereses = usuarioTemporal.getIntereses();
+			Interes newInteres = new Interes(datosUsuario); 
+			intereses.add(newInteres);
+			usuarioTemporal.setIntereses(newInteres);
+			
 		}
 		saveUsuario(usuarioTemporal);
 	}

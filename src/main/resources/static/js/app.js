@@ -10,6 +10,7 @@ var app =(function (){
 
     }
     function updateBasicInfo(){
+        //faltan verificaciones de fecha de nacimiento menor a la fecha actual
         apiclient.actualizarUsuario(0,$('#nombre').val(),$('#apellido').val(),$('#nacimiento').val(),genero,$("#city").val(),$('#pais').val(),$("#my-info").val());
         if(imagen !== ""){
             console.log("entre en el condicional");
@@ -20,13 +21,24 @@ var app =(function (){
         }
     }
     function updateWorkInfo(){
+        // falta verificaciones de fecha inicio se mayor a fecha fin 
         apiclient.actualizarInformacionWork(0, $("#compañia").val(), $("#Cargo").val(), $("#desdeInicioTrabajo").val(), $("#desdeFinTrabajo").val(), $("#Ciudad").val(), $("#descriptionTrabajo").val());
     }
-
+    function updateUniInfo(){
+        // falta verificaciones de fecha inicio se mayor a fecha fin
+        apiclient.actualizarInformacionUni(0, $("#school").val(), $("#desdeInicio").val(), $("#desdeFin").val(), $("#estudiosDescripcion").val())
+    }
+    function updateInterestsInfo(valor)  {
+        console.log(JSON.stringify(valor));
+        //app.actualizarInformacionInterese(id, valor);
+    }
 
     return {
         setGenero: function (genero) {
             setGender(genero);
+        },
+        updateininterests : function (value){
+            updateInterestsInfo(value);
         },
         actualizarInformacionBasicaUsuario: function () {
             updateBasicInfo();
@@ -34,6 +46,8 @@ var app =(function (){
         setFile : function(){
             setFile();
         },
-        updatework : updateWorkInfo
+        updatework : updateWorkInfo,
+        updateUni : updateUniInfo
+        
     }
 })();

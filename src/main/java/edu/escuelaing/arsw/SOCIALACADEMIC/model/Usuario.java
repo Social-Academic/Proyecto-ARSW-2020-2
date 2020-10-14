@@ -1,6 +1,7 @@
 package edu.escuelaing.arsw.SOCIALACADEMIC.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -61,9 +62,11 @@ public class Usuario implements Serializable {
 	private String descripcionTrabajo;
 	
 	private String fotoPerfil;
-	private String intereses;
 	
-
+	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "FK_INTERESES")
+	private List<Interes> intereses;
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "FK_USUARIO")
 	private List<Amigo> amigos;
@@ -269,12 +272,15 @@ public class Usuario implements Serializable {
 	public void setDescripcionTrabajo(String descripcionTrabajo) {
 		this.descripcionTrabajo = descripcionTrabajo;
 	}
-	public String getIntereses() {
+	public List<Interes> getIntereses() {
+		if(intereses.equals(null)) {
+			intereses = new ArrayList<>(); 
+		}
 		return intereses;
 	}
 
-	public void setIntereses(String interese) {
-		this.intereses = interese;
+	public void setIntereses(Interes interese) {
+		this.intereses = intereses;
 	}
 	public String getFotoPerfil() {
 		return fotoPerfil;

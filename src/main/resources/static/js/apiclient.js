@@ -17,11 +17,40 @@ apiclient = (function () {
                 });
             },
             actualizarInformacionWork(id, empresa, cargo, inicio, fin, ciudad, descripcion){
-                console.log(JSON.stringify([empresa, cargo, inicio, fin, ciudad, descripcion]))
+                //console.log(JSON.stringify([empresa, cargo, inicio, fin, ciudad, descripcion]))
                 var promise = $.ajax({
                     url: url + "informacionTrabajo/"+id,
                     type: 'PUT',
                     data: JSON.stringify([empresa, cargo, inicio, fin, ciudad, descripcion]),
+                    contentType: "application/json"
+                });
+                promise.then(function () {
+                    console.info("OK");
+                    //callback();
+                }, function () {
+                    console.info("ERROR");
+                });
+            },
+            actualizarInformacionUni(id, universidad, fechaInicio, fechaFin, descripcion){
+                console.log(JSON.stringify([universidad, fechaInicio, fechaFin, descripcion]))
+                var promise = $.ajax({
+                    url: url + "informacionUniversidad/"+id,
+                    type: 'PUT',
+                    data: JSON.stringify([universidad, fechaInicio, fechaFin, descripcion]),
+                    contentType: "application/json"
+                });
+                promise.then(function () {
+                    console.info("OK");
+                    //callback();
+                }, function () {
+                    console.info("ERROR");
+                });
+            },
+            actualizarInformacionInterese(id, interes){
+                var promise = $.ajax({
+                    url: url + "intereses/"+id,
+                    type: 'PUT',
+                    data: JSON.stringify(interes),
                     contentType: "application/json"
                 });
                 promise.then(function () {

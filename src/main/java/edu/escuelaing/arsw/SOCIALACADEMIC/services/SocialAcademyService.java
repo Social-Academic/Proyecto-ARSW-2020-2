@@ -18,7 +18,7 @@ public interface SocialAcademyService {
 	void agregarUsuario(String[] datos);
 	void actualizarDatosUniversidad(String[] datosUsuario, int id);
 	void actualizarDatosTrabajo(String[] datosUsuario, int id);
-	void actualizarInterese(String[] datosUsuario, int id);
+	void actualizarInterese(String datosUsuario, int id);
 	void actualizarContraseña();
 
 }
