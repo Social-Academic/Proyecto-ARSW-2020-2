@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -66,5 +67,23 @@ public class SocialAcademyApiController {
     	sas.agregarUsuario(datosUsuario);
     	return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
-    
+
+    @RequestMapping(method = RequestMethod.POST, value  = "/{id}/publicaciones")
+    public ResponseEntity<?> crearPublicacion(@RequestBody String publicacion, @PathVariable int id){
+        sas.agregarPublicacion(id,publicacion);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value  = "/{id}/publicaciones/{idPublicacion}/comentarios")
+    public ResponseEntity<?> crearComentario(@RequestBody String comentario, @PathVariable int idPublicacion, @PathVariable int id){
+        sas.agregarComentario(id,idPublicacion,comentario);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}/publicaciones")
+    public ResponseEntity<?> obtenerPublicaciones(@PathVariable int id){
+        return new ResponseEntity<>(sas.getPublicaciones(id), HttpStatus.ACCEPTED);
+    }
+
+
 }

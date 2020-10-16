@@ -4,12 +4,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.CopyOnWriteArrayList;
 
-import javax.persistence.criteria.CriteriaBuilder.In;
-
+import com.zaxxer.hikari.metrics.dropwizard.CodahaleMetricsTrackerFactory;
+import edu.escuelaing.arsw.SOCIALACADEMIC.model.Comentario;
+import edu.escuelaing.arsw.SOCIALACADEMIC.model.Publicacion;
+import edu.escuelaing.arsw.SOCIALACADEMIC.persistence.SocialAcademyPublicacionPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -18,15 +20,19 @@ import org.springframework.web.multipart.MultipartFile;
 
 import edu.escuelaing.arsw.SOCIALACADEMIC.model.Interes;
 import edu.escuelaing.arsw.SOCIALACADEMIC.model.Usuario;
-import edu.escuelaing.arsw.SOCIALACADEMIC.persistence.SocialAcademyPersistence;
+import edu.escuelaing.arsw.SOCIALACADEMIC.persistence.SocialAcademyUsuarioPersistence;
 import edu.escuelaing.arsw.SOCIALACADEMIC.services.SocialAcademyService;
 
 @Service
 public class SocialAcademyServiceImpl implements SocialAcademyService {
 
 	@Autowired
-	@Qualifier("socialAcademyPersistence")
-	private SocialAcademyPersistence sas;
+	@Qualifier("socialAcademyUsuarioPersistence")
+	private SocialAcademyUsuarioPersistence sas;
+
+	@Autowired
+	@Qualifier("socialAcademyPublicacionPersistence")
+	private SocialAcademyPublicacionPersistence spp;
 
 	@Override
 	@Transactional(readOnly = true)
@@ -45,6 +51,14 @@ public class SocialAcademyServiceImpl implements SocialAcademyService {
 	public void saveUsuario(Usuario usuario) {
 		sas.save(usuario);
 	}
+
+	@Override
+	@Transactional
+	public Publicacion findPublicacionById(int id){return spp.findById(id).orElse(null);}
+
+	@Override
+	@Transactional
+	public void savePublicacion(Publicacion publicacion){spp.save(publicacion); }
 
 	@Override
 	public void actualizarDatosBasicos(String[] datosUsuario, int id) {
@@ -145,6 +159,44 @@ public class SocialAcademyServiceImpl implements SocialAcademyService {
 	public void agregarUsuario(String[] datos) {
 		Usuario newUsuario = new Usuario(datos[0], datos[1], datos[2], datos[3], datos[4], datos[5], datos[6]);
 		saveUsuario(newUsuario);
+	}
+	@Override
+	public void agregarPublicacion(int id,String contenido){
+		Usuario usuarioTemp = findUsuarioById(id);
+		Publicacion newPublication = new Publicacion(id,contenido);
+		usuarioTemp.getPublicaciones().add(newPublication);
+		saveUsuario(usuarioTemp);
+
+	}
+	@Override
+	public void agregarComentario(int id, int idPublicacion,String contenido){
+		//Guardamos el comentario en la persona que lo hace
+		Usuario usuarioTemp1 = findUsuarioById(id);
+		Publicacion publicacionTemp = findPublicacionById(idPublicacion);
+		Comentario newComentario = new Comentario(contenido);
+		usuarioTemp1.getComentarios().add(newComentario);
+		saveUsuario(usuarioTemp1);
+
+
+		int usuario = publicacionTemp.getIdusuario();
+		Usuario usuarioTemp2 = findUsuarioById(usuario);
+		for(Publicacion i: usuarioTemp2.getPublicaciones()){
+			if (i.getId() == idPublicacion){
+				i.getComentarios().add(newComentario);
+				saveUsuario(usuarioTemp2);
+				break;
+			}
+		}
+
+	}
+	@Override
+	public List<Publicacion> getPublicaciones(int id){
+		Usuario temp = findUsuarioById(id);
+		List<Publicacion> temp2= new CopyOnWriteArrayList<>();
+		for (int i = temp.getPublicaciones().size() - 1; i >= 0; i--) {
+			temp2.add(temp.getPublicaciones().get(i));
+		}
+		return temp2;
 	}
 
 }
