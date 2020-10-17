@@ -4,6 +4,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import edu.escuelaing.arsw.SOCIALACADEMIC.model.Usuario;
 
-public interface SocialAcademyPersistence extends CrudRepository<Usuario, Integer> {
+public interface LoginPersistence extends CrudRepository<Usuario, Integer> {
 
+	public Usuario findByCorreo(String correo);
 }
