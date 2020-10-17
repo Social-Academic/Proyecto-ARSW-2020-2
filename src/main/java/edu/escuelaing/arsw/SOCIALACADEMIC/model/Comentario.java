@@ -10,7 +10,9 @@ import java.util.List;
 @Table(name = "comentarios")
 public class Comentario  implements Serializable {
 
-    @Id
+
+	
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(updatable = true)
@@ -35,4 +37,5 @@ public class Comentario  implements Serializable {
     public Comentario() {
 
     }
+    private static final long serialVersionUID = 1L;
 }

@@ -48,7 +48,8 @@ public class Usuario implements Serializable {
 	private String finUniversidad;
 	@Column(name = "descripcion_universidad")
 	private String descripcionUniversiad;
-	private boolean graduado;
+	@Column(updatable = true)
+	private boolean enabled;
 	@Column(length = 100, updatable = true)
 	private String empresa;
 	@Column(length = 100, updatable = true)
@@ -223,15 +224,12 @@ public class Usuario implements Serializable {
 	public void setDescripcionUniversiad(String descripcionUniversiad) {
 		this.descripcionUniversiad = descripcionUniversiad;
 	}
-
-	public boolean isGraduado() {
-		return graduado;
+	public boolean isEnabled() {
+		return enabled;
 	}
-
-	public void setGraduado(boolean graduado) {
-		this.graduado = graduado;
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
-
 	public String getEmpresa() {
 		return empresa;
 	}
@@ -286,9 +284,11 @@ public class Usuario implements Serializable {
 		}
 		return intereses;
 	}
-
-	public void setIntereses(Interes interese) {
+	public void setIntereses(List<Interes> intereses) {
 		this.intereses = intereses;
+	}
+	public void setComentarios(List<Comentario> comentarios) {
+		this.comentarios = comentarios;
 	}
 	public String getFotoPerfil() {
 		return fotoPerfil;

@@ -134,7 +134,7 @@ public class SocialAcademyServiceImpl implements SocialAcademyService {
 			List<Interes> intereses = usuarioTemporal.getIntereses();
 			Interes newInteres = new Interes(datosUsuario); 
 			intereses.add(newInteres);
-			usuarioTemporal.setIntereses(newInteres);
+			//usuarioTemporal.setIntereses(newInteres);
 			
 		}
 		saveUsuario(usuarioTemporal);

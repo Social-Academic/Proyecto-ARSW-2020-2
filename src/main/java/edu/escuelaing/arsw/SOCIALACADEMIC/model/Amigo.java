@@ -12,6 +12,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "amigos")
 public class Amigo implements Serializable {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
@@ -33,5 +34,5 @@ public class Amigo implements Serializable {
 	public void setAmigo(int amigo) {
 		this.amigo = amigo;
 	}
-
+	private static final long serialVersionUID = 1L;
 }

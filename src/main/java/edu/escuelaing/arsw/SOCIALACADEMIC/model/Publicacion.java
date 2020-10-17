@@ -14,6 +14,9 @@ import javax.persistence.*;
 public class Publicacion implements Serializable {
 
 
+
+	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -74,4 +77,5 @@ public class Publicacion implements Serializable {
 	public String getFechaPublicacion() {
 		return fechaPublicacion;
 	}
+	private static final long serialVersionUID = 1L;
 }
