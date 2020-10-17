@@ -87,6 +87,33 @@ apiclient = (function () {
                     },
                     async: true
                 });
+            },
+            crearPublicacion: function (publicacion){
+                var promise = $.ajax({
+                    url: url+0+"/publicaciones",
+                    method: "POST",
+                    timeout: 0,
+                    headers: {
+                        "Content-Type": "text/plain"
+                    },
+                    data: publicacion,
+
+                });
+                promise.then(function () {
+                    console.info("OK");
+                    //callback();
+                }, function () {
+                    console.info("ERROR");
+                });
+            },
+            obtenerPublicaciones: function (id, callback) {
+                jQuery.ajax({
+                    url: url + id +"/publicaciones",
+                    success: function (result) {
+                        callback(result);
+                    },
+                    async: true
+                });
             }
 
         }

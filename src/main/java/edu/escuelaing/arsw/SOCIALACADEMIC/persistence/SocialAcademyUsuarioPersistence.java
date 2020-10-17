@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import edu.escuelaing.arsw.SOCIALACADEMIC.model.Usuario;
 
-public interface SocialAcademyPersistence extends CrudRepository<Usuario, Integer> {
+public interface SocialAcademyUsuarioPersistence extends CrudRepository<Usuario, Integer> {
 
 }

@@ -3,6 +3,7 @@ package edu.escuelaing.arsw.SOCIALACADEMIC.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -72,8 +73,13 @@ public class Usuario implements Serializable {
 	private List<Amigo> amigos;
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "FK_publicaciones")
+	private List<Publicacion> publicaciones = new CopyOnWriteArrayList<>();
 
-	private List<Publicacion> publicaciones;
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "FK_COMENTARIOS")
+	private List<Comentario> comentarios = new CopyOnWriteArrayList<>();
+
+
 	public Usuario() {
 		
 	}
@@ -84,7 +90,8 @@ public class Usuario implements Serializable {
 		this.password = passwd;
 		this.fecha = fecha; 
 		this.genero = genero;
-		this.ciudad = ciudad; 
+		this.ciudad = ciudad;
+
 	}
 
 	public int getId() {
@@ -272,6 +279,7 @@ public class Usuario implements Serializable {
 	public void setDescripcionTrabajo(String descripcionTrabajo) {
 		this.descripcionTrabajo = descripcionTrabajo;
 	}
+
 	public List<Interes> getIntereses() {
 		if(intereses.equals(null)) {
 			intereses = new ArrayList<>(); 
@@ -292,5 +300,9 @@ public class Usuario implements Serializable {
 
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
+	}
+
+	public List<Comentario> getComentarios() {
+		return comentarios;
 	}
 }
