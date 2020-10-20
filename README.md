@@ -56,7 +56,7 @@
 >#### 8. Reacciones a las publicaciones
 >   - Como: Usuario de la aplicacion,
 >   - Quiero: reaccionar de forma positiva o negativa a las publicaciones de mis amistades
->   - Para: poder expresar lo que me gusta y lo que no
+>   - Para: poder expresar lo que me gusta y lo que no.
 
 ## Diagrama de casos de uso
 >   - ![](img/Casos%20de%20uso.png)
