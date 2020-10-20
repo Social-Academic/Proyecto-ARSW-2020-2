@@ -135,6 +135,10 @@ var app =(function (){
         
         apiclient.obtenerPublicaciones(localStorage.getItem("id"),cargarPublicaciones,localStorage.getItem("Authorization"));
     }
+    function cerrarSesion(){
+        localStorage.clear();
+        location.reload(); 
+    }
 
     return {
         updatePassword:updatePassword,
@@ -158,6 +162,7 @@ var app =(function (){
         updatework : updateWorkInfo,
         updateUni : updateUniInfo,
         crearPublicacion: crearPublicacion,
+        cerrarSesion:cerrarSesion
         
     }
 })();
