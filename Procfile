@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -Dserver.port=$PORT -cp target/classes:target/dependency/* edu.escuelaing.arsw.SOCIALACADEMIC.App
+web: java $JAVA_OPTS -Dserver.port=8080 -cp target/classes:target/dependency/* edu.escuelaing.arsw.SOCIALACADEMIC.App
