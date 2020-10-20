@@ -105,7 +105,7 @@ var app =(function (){
                                 </div><!--Post Date End--> 
                 
                                 <div class="post-container"> 
-                                  <img src="http://placehold.it/300x300" alt="user" class="profile-photo-md pull-left" />
+                                  <img src="images/ecdbe23f-5164-480d-affe-02f751f1c8ff_WhatsApp%20Image%202019-06-21%20at%203.51.09%20PM.jpeg" alt="user" class="profile-photo-md pull-left" />
                                   <div class="post-detail">
                                     <div class="user-info">
                                       <h5><a href="timeline.html" class="profile-link" id="usuario"+${pb.idU}>${nombre}</a> </h5>
@@ -121,7 +121,7 @@ var app =(function (){
                                     <div class="line-divider"></div>
                 
                                     <div class="post-comment">
-                                      <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm" />
+                                      <img src="images/ecdbe23f-5164-480d-affe-02f751f1c8ff_WhatsApp%20Image%202019-06-21%20at%203.51.09%20PM.jpeg" alt="" class="profile-photo-sm" />
                                       <input type="text" class="form-control" placeholder="Post a comment">
                                     </div>
                                   </div>
@@ -136,6 +136,7 @@ var app =(function (){
     function cargarPublicaciones(){
 
         apiclient.obtenerPublicaciones(localStorage.getItem("id"),pintarPublicaciones,localStorage.getItem("Authorization"));
+        
     }
 
     return {
