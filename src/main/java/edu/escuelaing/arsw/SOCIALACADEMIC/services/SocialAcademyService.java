@@ -7,6 +7,7 @@ import edu.escuelaing.arsw.SOCIALACADEMIC.model.Publicacion;
 import org.springframework.web.multipart.MultipartFile;
 
 import edu.escuelaing.arsw.SOCIALACADEMIC.model.Usuario;
+import edu.escuelaing.arsw.SOCIALACADEMIC.services.impl.UsuarioServicesException;
 
 
 public interface SocialAcademyService {
@@ -20,11 +21,13 @@ public interface SocialAcademyService {
 	void actualizarDatosUniversidad(String[] datosUsuario, int id);
 	void actualizarDatosTrabajo(String[] datosUsuario, int id);
 	void actualizarInterese(String datosUsuario, int id);
-	void actualizarContraseña();
     void agregarPublicacion(int id,String contenido);
     Publicacion findPublicacionById(int id);
     void savePublicacion(Publicacion publicacion);
     List<Publicacion> getPublicaciones(int id);
     void agregarComentario(int id,int idPublicacion,String contenido);
+	Usuario findusuarioByCorreo(String correo);
+	void setPassword(int id, String[] datos) throws UsuarioServicesException;
+	
 
 }

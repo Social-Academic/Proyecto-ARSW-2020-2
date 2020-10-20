@@ -2,6 +2,7 @@ var app =(function (){
     var genero="";
     var imagen = "";
     var publicacion ;
+    var token;
     function setGender(g){
         genero=g;
     }
@@ -10,24 +11,69 @@ var app =(function (){
         imagen = $("#imagenPerfil")[0].files[0];
 
     }
+    function onload(){
+        if(localStorage.getItem("Authorization") === null){
+            location.href = "/" ;
+            return
+        }
+    }
+    function onloadLogin(){
+        if(localStorage.getItem("Authorization") !== null){
+            location.href = "/timeline.html" ;
+            return
+        }
+    }
+    function onloadUsuario(){
+        apiclient.obtenerUsuarioCorreo(localStorage.getItem("correo"), localStorage.getItem("Authorization"), cargarInformacion);
+    }
+    function cargarInformacion(Usuario){ 
+        localStorage.setItem("id", Usuario.id);
+        $("#nombreUsuario").text(Usuario.nombre+" "+Usuario.apellido);
+        if(Usuario.cargo !== ""){
+            $("#puesto").text(Usuario.cargo);
+        }else{
+            $("#puesto").text(""); 
+        }
+    }
+    function getToken(newToken){
+        token = newToken.access_token;
+        correo = localStorage.getItem("correo"); 
+        localStorage.setItem("Authorization",token);
+        //apiclient.obtenerUsuarioCorreo(correo, token);
+        location.href = "/timeline.html"; 
+        
+        
+    }
+    function updatePassword(){
+        oldPassword = $("#oldPassword").val();
+        newPassword = $("#newPassword").val();
+        confirmPassword = $("#confirmPassword").val();
+        if(newPassword === confirmPassword){
+            apiclient.actualizarPassword(localStorage.getItem("id"), oldPassword, newPassword);
+        }else{
+            alert("la nueva contraseña no coincide");
+        }
+    }
     function updateBasicInfo(){
         //faltan verificaciones de fecha de nacimiento menor a la fecha actual
-        apiclient.actualizarUsuario(0,$('#nombre').val(),$('#apellido').val(),$('#nacimiento').val(),genero,$("#city").val(),$('#pais').val(),$("#my-info").val());
+        apiclient.actualizarUsuario(localStorage.getItem("id"),$('#nombre').val(),$('#apellido').val(),$('#nacimiento').val(),genero,$("#city").val(),$('#pais').val(),$("#my-info").val(), localStorage.getItem("Authorization"),onloadUsuario);
         if(imagen !== ""){
             console.log("entre en el condicional");
             var formData = new FormData();
             formData.append("imagenUsuario", imagen);
             formData.append("idUsuario",0);
-            apiclient.actualizarImagenUsuario(formData);
+            apiclient.actualizarImagenUsuario(formData, localStorage.getItem("Authorization"));
         }
+        location.reload(); 
     }
     function updateWorkInfo(){
         // falta verificaciones de fecha inicio se mayor a fecha fin 
-        apiclient.actualizarInformacionWork(0, $("#compañia").val(), $("#Cargo").val(), $("#desdeInicioTrabajo").val(), $("#desdeFinTrabajo").val(), $("#Ciudad").val(), $("#descriptionTrabajo").val());
+        apiclient.actualizarInformacionWork(localStorage.getItem("id"), $("#compañia").val(), $("#Cargo").val(), $("#desdeInicioTrabajo").val(), $("#desdeFinTrabajo").val(), $("#Ciudad").val(), $("#descriptionTrabajo").val(),localStorage.getItem("Authorization"));
+
     }
     function updateUniInfo(){
         // falta verificaciones de fecha inicio se mayor a fecha fin
-        apiclient.actualizarInformacionUni(0, $("#school").val(), $("#desdeInicio").val(), $("#desdeFin").val(), $("#estudiosDescripcion").val())
+        apiclient.actualizarInformacionUni(localStorage.getItem("id"), $("#school").val(), $("#desdeInicio").val(), $("#desdeFin").val(), $("#estudiosDescripcion").val(),localStorage.getItem("Authorization"))
     }
     function updateInterestsInfo(valor)  {
         console.log(JSON.stringify(valor));
@@ -36,7 +82,7 @@ var app =(function (){
 
     function  crearPublicacion(){
         publicacion = $("#publicacion").val();
-        apiclient.crearPublicacion(publicacion);
+        apiclient.crearPublicacion(crearPublicacion, publicacion, localStorage.getItem("Authorization"));
         location.reload();
         app.cargarPublicaciones();
 
@@ -50,7 +96,6 @@ var app =(function (){
             return {contenido:pb.contenido, idU:pb.idusuario, fecha:pb.fechaPublicacion, idP:pb.id}
         })
         lista.map(function(pb){
-            console.log(pb.contenido);
             var div = `<div class=\"post-content\">
                                 <div class="post-date hidden-xs hidden-sm">
                                   <h5>usuario</h5>
@@ -86,8 +131,18 @@ var app =(function (){
         })
 
     }
+    function cargarPublicaciones(){
+        
+        apiclient.obtenerPublicaciones(localStorage.getItem("id"),cargarPublicaciones,localStorage.getItem("Authorization"));
+    }
 
     return {
+        updatePassword:updatePassword,
+        onloadUsuario:onloadUsuario,
+        onloadLogin:onloadLogin,
+        cargarPublicaciones:cargarPublicaciones,
+        onload: onload, 
+        getToken:getToken,
         setGenero: function (genero) {
             setGender(genero);
         },
@@ -103,9 +158,6 @@ var app =(function (){
         updatework : updateWorkInfo,
         updateUni : updateUniInfo,
         crearPublicacion: crearPublicacion,
-        cargarPublicaciones: function (){
-            apiclient.obtenerPublicaciones(0,cargarPublicaciones);
-        }
         
     }
 })();

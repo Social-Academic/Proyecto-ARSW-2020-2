@@ -23,11 +23,17 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	private AuthenticationManager authenticationManager;
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-		super.configure(security);
+		security.tokenKeyAccess("permitAll()")
+		.checkTokenAccess("isAuthenticated()");
 	}
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-
+		clients.inMemory().withClient("SocialAcademyWeb")
+		.secret(passwordEncoder.encode("Hola1234"))
+		.scopes("read","write")
+		.authorizedGrantTypes("password", "refresh_token")
+		.accessTokenValiditySeconds(3600)
+		.refreshTokenValiditySeconds(3600);
 	}
 	
 	@Override

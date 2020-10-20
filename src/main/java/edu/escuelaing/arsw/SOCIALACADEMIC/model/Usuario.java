@@ -84,7 +84,7 @@ public class Usuario implements Serializable {
 	public Usuario() {
 		
 	}
-	public Usuario(String nombre, String apellido, String correo, String passwd, String fecha, String genero, String ciudad) {
+	public Usuario(String nombre, String apellido, String correo, String passwd, String fecha, String genero, String ciudad, Boolean enabled) {
 		this.nombre= nombre;
 		this.apellido = apellido;
 		this.correo = correo;
@@ -92,6 +92,7 @@ public class Usuario implements Serializable {
 		this.fecha = fecha; 
 		this.genero = genero;
 		this.ciudad = ciudad;
+		this.enabled = enabled; 
 
 	}
 

@@ -8,18 +8,18 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import com.zaxxer.hikari.metrics.dropwizard.CodahaleMetricsTrackerFactory;
-import edu.escuelaing.arsw.SOCIALACADEMIC.model.Comentario;
-import edu.escuelaing.arsw.SOCIALACADEMIC.model.Publicacion;
-import edu.escuelaing.arsw.SOCIALACADEMIC.persistence.SocialAcademyPublicacionPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import edu.escuelaing.arsw.SOCIALACADEMIC.model.Comentario;
 import edu.escuelaing.arsw.SOCIALACADEMIC.model.Interes;
+import edu.escuelaing.arsw.SOCIALACADEMIC.model.Publicacion;
 import edu.escuelaing.arsw.SOCIALACADEMIC.model.Usuario;
+import edu.escuelaing.arsw.SOCIALACADEMIC.persistence.SocialAcademyPublicacionPersistence;
 import edu.escuelaing.arsw.SOCIALACADEMIC.persistence.SocialAcademyUsuarioPersistence;
 import edu.escuelaing.arsw.SOCIALACADEMIC.services.SocialAcademyService;
 
@@ -33,6 +33,9 @@ public class SocialAcademyServiceImpl implements SocialAcademyService {
 	@Autowired
 	@Qualifier("socialAcademyPublicacionPersistence")
 	private SocialAcademyPublicacionPersistence spp;
+	
+	@Autowired
+	private BCryptPasswordEncoder passworEncoder;
 
 	@Override
 	@Transactional(readOnly = true)
@@ -59,7 +62,12 @@ public class SocialAcademyServiceImpl implements SocialAcademyService {
 	@Override
 	@Transactional
 	public void savePublicacion(Publicacion publicacion){spp.save(publicacion); }
-
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Usuario findusuarioByCorreo(String correo) {
+		return sas.findByCorreo(correo);
+	}
 	@Override
 	public void actualizarDatosBasicos(String[] datosUsuario, int id) {
 		Usuario temp = findUsuarioById(id);
@@ -86,6 +94,7 @@ public class SocialAcademyServiceImpl implements SocialAcademyService {
 		}
 		saveUsuario(temp);
 	}
+	
 	@Override
 	public void actualizarDatosUniversidad(String[] datosUsuario, int id) {
 		Usuario usuarioTemporal = findUsuarioById(id);
@@ -140,10 +149,6 @@ public class SocialAcademyServiceImpl implements SocialAcademyService {
 		saveUsuario(usuarioTemporal);
 	}
 	@Override
-	public void actualizarContraseña() {
-		
-	}
-	@Override
 	public void uploadImagenPerfil(int id, MultipartFile imagenUsuario) throws IOException {
 		Usuario usuarioTemp = findUsuarioById(id);
 		if (!(imagenUsuario.isEmpty())) {
@@ -157,7 +162,9 @@ public class SocialAcademyServiceImpl implements SocialAcademyService {
 	}
 	@Override
 	public void agregarUsuario(String[] datos) {
-		Usuario newUsuario = new Usuario(datos[0], datos[1], datos[2], datos[3], datos[4], datos[5], datos[6]);
+		System.out.println(datos[3]);
+		String password = passworEncoder.encode(datos[3]);
+		Usuario newUsuario = new Usuario(datos[0], datos[1], datos[2], password, datos[4], datos[5], datos[6], true);
 		saveUsuario(newUsuario);
 	}
 	@Override
@@ -197,6 +204,15 @@ public class SocialAcademyServiceImpl implements SocialAcademyService {
 			temp2.add(temp.getPublicaciones().get(i));
 		}
 		return temp2;
+	}
+	@Override
+	public void setPassword(int id, String[] datos) throws UsuarioServicesException {
+		Usuario temp = findUsuarioById(id);
+		if(temp.getPassword().equals(datos[0])) {
+			temp.setPassword(datos[1]);
+		}else {
+			throw new UsuarioServicesException("La anterior contraseña no coincide");
+		}
 	}
 
 }

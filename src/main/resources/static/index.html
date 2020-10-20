@@ -21,7 +21,7 @@
     <!--Favicon-->
     <link rel="shortcut icon" type="image/png" href="images/fav.png"/>
 	</head>
-	<body>
+	<body onload="app.onloadLogin()">
 
     <!-- Header
     ================================================= -->
@@ -61,7 +61,7 @@
                     <div class="row">
                       <div class="form-group col-xs-6">
                         <label for="firstname" class="sr-only">Nombre</label>
-                        <input id="firstname" class="form-control input-group-lg" type="text" name="firstname" title="Enter first name" placeholder="Nombre"/>
+                        <input id=firstname class="form-control input-group-lg" type="text" name="firstname" title="Enter first name" placeholder="Nombre"/>
                       </div>
                       <div class="form-group col-xs-6">
                         <label for="lastname" class="sr-only">Apellido</label>
@@ -71,41 +71,51 @@
                     <div class="row">
                       <div class="form-group col-xs-12">
                         <label for="email" class="sr-only">Correo</label>
-                        <input id="email" class="form-control input-group-lg" type="text" name="Email" title="Enter Email" placeholder="Correo"/>
+                        <input id=newemail class="form-control input-group-lg" type="text" name="Email" title="Enter Email" placeholder="Correo"/>
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col-xs-12">
                         <label for="password" class="sr-only">Contraseña</label>
-                        <input id="password" class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Contraseña"/>
+                        <input id=newpassword class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Contraseña"/>
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col-xs-12">
-                        <label for="password" class="sr-only">Contraseña</label>
-                        <input id="fecha" class="form-control input-group-lg" type="date" />
+                        <label for="password" class="sr-only">fecha</label>
+                        <input id=fecha class="form-control input-group-lg" max="2000-13-13" type="date" />
+                        <script>
+                            var today = new Date();
+                            var dd = today.getDate();
+                            var mm = today.getMonth()+1; 
+                            var yyyy = today.getFullYear();
+                            if(dd<10){
+                              dd='0'+dd;
+                            }
+                            if(mm<10){
+                              mm='0'+mm;
+                            }
+                            today = yyyy+'-'+mm+'-'+dd;
+                            document.getElementById("fecha").setAttribute("max", today);
+                        </script>
                       </div>
                     </div>
                     <div class="form-group gender">
                       <label class="radio-inline">
-                        <input type="radio" name="optradio" checked>Masculino
+                        <input type="radio" name="optradio" onclick="app.setGenero('Masculino')" checked >Masculino
                       </label>
                       <label class="radio-inline">
-                        <input type="radio" name="optradio">Femenino
+                        <input type="radio" name="optradio" onclick="app.setGenero('Femenino')">Femenino
                       </label>
                     </div>
                     <div class="row">
-                      <div class="form-group col-xs-6">
+                      <div class="form-group col-xs-12">
                         <label for="city" class="sr-only">City</label>
-                        <input id="city" class="form-control input-group-lg reg_name" type="text" name="city" title="Enter city" placeholder="Tu ciudad"/>
-                      </div>
-                      <div class="form-group col-xs-6">
-                        <label for="country" class="sr-only"></label>
-                        <input type="text" class="form-control input-group-lg reg_name">
+                        <input id=city class="form-control input-group-lg reg_name" type="text" name="city" title="Enter city" placeholder="Tu ciudad"/>
                       </div>
                     </div>
                   </form><!--Register Now Form Ends-->
-                  <button class="btn btn-primary">Registrate</button>
+                  <button class="btn btn-primary" onclick="registro.registrarUsuario()">Registrate</button>
                 </div><!--Registration Form Contents Ends-->
                 
                 <!--Login-->
@@ -116,19 +126,19 @@
                      <div class="row">
                       <div class="form-group col-xs-12">
                         <label for="my-email" class="sr-only">Correo</label>
-                        <input id="my-email" class="form-control input-group-lg" type="text" name="Email" title="Enter Email" placeholder="Tu correo"/>
+                        <input id="email" class="form-control input-group-lg" type="text" name="Email" title="Enter Email" placeholder="Tu correo"/>
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col-xs-12">
                         <label for="my-password" class="sr-only">Contraseña</label>
-                        <input id="my-password" class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Contraseña"/>
+                        <input id="password" class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Contraseña"/>
                       </div>
                     </div>
                   </form><!--Login Form Ends--> 
                   <br>
                   <br>
-                  <button class="btn btn-primary">Login Now</button>
+                  <button class="btn btn-primary" onclick="login.login()">Login Now</button>
                 </div>
               </div>
             </div>
@@ -149,6 +159,10 @@
     <script src="js/jquery.appear.min.js"></script>
 		<script src="js/jquery.incremental-counter.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/apiclient.js"></script>
+    <script src="js/registro.js"></script>
     
 	</body>
 </html>

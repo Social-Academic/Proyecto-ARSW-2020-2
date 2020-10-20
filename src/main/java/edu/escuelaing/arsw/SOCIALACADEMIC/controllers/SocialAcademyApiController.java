@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import edu.escuelaing.arsw.SOCIALACADEMIC.services.SocialAcademyService;
+import edu.escuelaing.arsw.SOCIALACADEMIC.services.impl.UsuarioServicesException;
 
 @RestController
 @RequestMapping(value = "/usuarios")
@@ -30,7 +31,20 @@ public class SocialAcademyApiController {
     public ResponseEntity<?> obtenerUsuario(@PathVariable int id){
         return new ResponseEntity<>(sas.findUsuarioById(id), HttpStatus.ACCEPTED);
     }
-    
+    @RequestMapping(method = RequestMethod.GET, value = "/correos/{correo}")
+    public ResponseEntity<?> obtenerUsuarioCorreo(@PathVariable String correo){
+    	return new ResponseEntity<>(sas.findusuarioByCorreo(correo), HttpStatus.ACCEPTED);
+    }
+    @RequestMapping(method = RequestMethod.PUT, value = "/cambioPassword/{id}")
+    public ResponseEntity<?> actualizarPassword(@PathVariable int id, @RequestBody String[] datos ){
+    	try {
+			sas.setPassword(id, datos);
+			return new ResponseEntity<>(HttpStatus.ACCEPTED);
+		} catch (UsuarioServicesException e) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+    	 
+    }
     @RequestMapping(method = RequestMethod.PUT, value="/informacionBasica/{id}")
     public ResponseEntity<?> actualizarUsuario(@PathVariable int id, @RequestBody String[] datosUsuario) {
         sas.actualizarDatosBasicos(datosUsuario, id);

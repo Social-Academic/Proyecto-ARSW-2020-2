@@ -23,7 +23,7 @@
     <link rel="shortcut icon" type="image/png" href=""/>
 
 	</head>
-  <body onload="app.cargarPublicaciones()">
+  <body onload="app.onload(), app.onloadUsuario(), app.cargarPublicaciones()">
 
     <!-- Header
     ================================================= -->
@@ -78,8 +78,8 @@
               <div class="col-md-3">
                 <div class="profile-info">
                   <img src="http://placehold.it/300x300" alt="" class="img-responsive profile-photo" />
-                  <h3>usuario</h3>
-                  <p class="text-muted">Creative Director</p>
+                  <h3 id = nombreUsuario></h3>
+                  <p id = puesto > </p>
                 </div>
               </div>
               <div class="col-md-9">
@@ -99,22 +99,7 @@
           </div><!--Timeline Menu for Large Screens End-->
 
           <!--Timeline Menu for Small Screens-->
-          <div class="navbar-mobile hidden-lg hidden-md">
-            <div class="profile-info">
-              <img src="http://placehold.it/300x300" alt="" class="img-responsive profile-photo" />
-              <h4>Sarah usuario</h4>
-              <p class="text-muted">Creative Director</p>
-            </div>
-            <div class="mobile-menu">
-              <ul class="list-inline">
-                <li><a href="timline.html" class="active">Biografia</a></li>
-                <li><a href="timeline-about.html">Sobre mi</a></li>
-                <li><a href="timeline-album.html">Fotos</a></li>
-                <li><a href="timeline-friends.html">Amigos</a></li>
-              </ul>
-              <button class="btn-primary">Agregar</button>
-            </div>
-          </div><!--Timeline Menu for Small Screens End-->
+          
 
         </div>
         <div id="page-contents">
