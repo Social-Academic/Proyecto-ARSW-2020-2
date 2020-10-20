@@ -12,11 +12,11 @@ var registro =(function (){
             var password = $("#newpassword").val();
             var fecha = $("#fecha").val();
             var ciudad = $("#city").val();
-            apiclient.crearPublicacion(nombre,apellido, correo, password, fecha, genero,ciudad);
+            apiclient.crearUsuario(nombre,apellido, correo, password, fecha, genero,ciudad);
         }
     }
     function setGender(genere){
-        genero = genere; 
+        genero = genere;
     }
     return{
         registrarUsuario:registrarUsuario,

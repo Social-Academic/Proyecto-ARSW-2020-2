@@ -26,23 +26,24 @@ var app =(function (){
     function onloadUsuario(){
         apiclient.obtenerUsuarioCorreo(localStorage.getItem("correo"), localStorage.getItem("Authorization"), cargarInformacion);
     }
-    function cargarInformacion(Usuario){ 
+    function cargarInformacion(Usuario){
         localStorage.setItem("id", Usuario.id);
         $("#nombreUsuario").text(Usuario.nombre+" "+Usuario.apellido);
         if(Usuario.cargo !== ""){
             $("#puesto").text(Usuario.cargo);
         }else{
-            $("#puesto").text(""); 
+            $("#puesto").text("Estudiante");
         }
+        localStorage.setItem("nombreUsuario", Usuario.nombre + " "+ Usuario.apellido);
     }
     function getToken(newToken){
         token = newToken.access_token;
-        correo = localStorage.getItem("correo"); 
+        correo = localStorage.getItem("correo");
         localStorage.setItem("Authorization",token);
         //apiclient.obtenerUsuarioCorreo(correo, token);
-        location.href = "/timeline.html"; 
-        
-        
+        location.href = "/timeline.html";
+
+
     }
     function updatePassword(){
         oldPassword = $("#oldPassword").val();
@@ -64,10 +65,10 @@ var app =(function (){
             formData.append("idUsuario",0);
             apiclient.actualizarImagenUsuario(formData, localStorage.getItem("Authorization"));
         }
-        location.reload(); 
+        location.reload();
     }
     function updateWorkInfo(){
-        // falta verificaciones de fecha inicio se mayor a fecha fin 
+        // falta verificaciones de fecha inicio se mayor a fecha fin
         apiclient.actualizarInformacionWork(localStorage.getItem("id"), $("#compañia").val(), $("#Cargo").val(), $("#desdeInicioTrabajo").val(), $("#desdeFinTrabajo").val(), $("#Ciudad").val(), $("#descriptionTrabajo").val(),localStorage.getItem("Authorization"));
 
     }
@@ -82,12 +83,12 @@ var app =(function (){
 
     function  crearPublicacion(){
         publicacion = $("#publicacion").val();
-        apiclient.crearPublicacion(crearPublicacion, publicacion, localStorage.getItem("Authorization"));
+        apiclient.crearPublicacion(localStorage.getItem("id"), publicacion, localStorage.getItem("Authorization"));
         location.reload();
-        app.cargarPublicaciones();
+        cargarPublicaciones();
 
     }
-    function cargarPublicaciones(publi){
+    function pintarPublicaciones(publi){
         if (publi == null){
             return new Error("No se encontro");
         }
@@ -95,10 +96,11 @@ var app =(function (){
         var lista  = publi.map(function(pb){
             return {contenido:pb.contenido, idU:pb.idusuario, fecha:pb.fechaPublicacion, idP:pb.id}
         })
+        var nombre = localStorage.getItem("nombreUsuario")
         lista.map(function(pb){
             var div = `<div class=\"post-content\">
                                 <div class="post-date hidden-xs hidden-sm">
-                                  <h5>usuario</h5>
+                                  <h5>${nombre}</h5>
                                   <p class="text-grey" id="fecha"+${pb.idP}> ${pb.fecha} </p>
                                 </div><!--Post Date End--> 
                 
@@ -106,7 +108,7 @@ var app =(function (){
                                   <img src="http://placehold.it/300x300" alt="user" class="profile-photo-md pull-left" />
                                   <div class="post-detail">
                                     <div class="user-info">
-                                      <h5><a href="timeline.html" class="profile-link" id="usuario"+${pb.idU}>usuario</a> </h5>
+                                      <h5><a href="timeline.html" class="profile-link" id="usuario"+${pb.idU}>${nombre}</a> </h5>
                                     </div>
                                     <div class="reaction">
                                       <a class="btn text-green"><i class="icon ion-thumbsup"></i> 0</a>
@@ -132,12 +134,8 @@ var app =(function (){
 
     }
     function cargarPublicaciones(){
-        
-        apiclient.obtenerPublicaciones(localStorage.getItem("id"),cargarPublicaciones,localStorage.getItem("Authorization"));
-    }
-    function cerrarSesion(){
-        localStorage.clear();
-        location.reload(); 
+
+        apiclient.obtenerPublicaciones(localStorage.getItem("id"),pintarPublicaciones,localStorage.getItem("Authorization"));
     }
 
     return {
@@ -145,7 +143,7 @@ var app =(function (){
         onloadUsuario:onloadUsuario,
         onloadLogin:onloadLogin,
         cargarPublicaciones:cargarPublicaciones,
-        onload: onload, 
+        onload: onload,
         getToken:getToken,
         setGenero: function (genero) {
             setGender(genero);
@@ -162,7 +160,8 @@ var app =(function (){
         updatework : updateWorkInfo,
         updateUni : updateUniInfo,
         crearPublicacion: crearPublicacion,
-        cerrarSesion:cerrarSesion
-        
+        crearAlInciar: cargarPublicaciones
+
+
     }
 })();
