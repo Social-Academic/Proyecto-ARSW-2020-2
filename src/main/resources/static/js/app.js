@@ -29,12 +29,16 @@ var app =(function (){
     function cargarInformacion(Usuario){
         localStorage.setItem("id", Usuario.id);
         $("#nombreUsuario").text(Usuario.nombre+" "+Usuario.apellido);
+        $("#nombreUsuarioRespons").text(Usuario.nombre+" "+Usuario.apellido);
         if(Usuario.cargo !== ""){
             $("#puesto").text(Usuario.cargo);
+            $("#puestoRespons").text(Usuario.cargo);
         }else{
             $("#puesto").text("Estudiante");
+            $("#puestoRespons").text("Estudiante");
         }
         localStorage.setItem("nombreUsuario", Usuario.nombre + " "+ Usuario.apellido);
+
     }
     function getToken(newToken){
         token = newToken.access_token;
@@ -82,10 +86,17 @@ var app =(function (){
     }
 
     function  crearPublicacion(){
-        publicacion = $("#publicacion").val();
-        apiclient.crearPublicacion(localStorage.getItem("id"), publicacion, localStorage.getItem("Authorization"));
-        location.reload();
-        cargarPublicaciones();
+        publicacion = $("#publicacion");
+        if (publicacion == null){
+            window.alert("hay nada");
+
+        }
+        else{
+            apiclient.crearPublicacion(localStorage.getItem("id"), publicacion, localStorage.getItem("Authorization"));
+            location.reload();
+            cargarPublicaciones();
+        }
+
 
     }
     function pintarPublicaciones(publi){

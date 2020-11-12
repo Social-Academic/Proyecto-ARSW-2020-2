@@ -31,8 +31,11 @@ apiclient = (function () {
                 localStorage.setItem("correo", correo);
                 callback(data);
             }, function (data) {
+                //var error = `<div class="alert alert-danger" role="alert"> La contraseña no es correcta, vuleva a intentar </div>`
+                //$("#lp-register").append(error);
                 console.info(data)
                 console.info("Credenciales incorrectas");
+
             });
         },
         actualizarUsuario: function (id, nombre, apellido, fecha, genero, ciudad, pais, descripcion, token, callback) {
@@ -50,6 +53,8 @@ apiclient = (function () {
                 callback();
             }, function () {
                 console.info("ERROR");
+
+
             });
         },
         actualizarInformacionWork(id, empresa, cargo, inicio, fin, ciudad, descripcion, token){
