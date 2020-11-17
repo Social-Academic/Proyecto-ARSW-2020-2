@@ -21,4 +21,9 @@ public interface ChatServices {
 
 	void saveMensaje(Mensaje mensaje);
 
+	Chat crearChat(int idUsuario, int idAmigo);
+
+
+	Chat findChatByUsuarioAndAmigo(int usuario, int amigo);
+
 }
