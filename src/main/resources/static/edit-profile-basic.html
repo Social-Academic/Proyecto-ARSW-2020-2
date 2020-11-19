@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 	<head>
+      <!-- Google Tag Manager -->
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-KQZFJ73');</script>
+      <!-- End Google Tag Manager -->
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="This is social network html5 template available in themeforest......" />
@@ -22,7 +29,10 @@
     <link rel="shortcut icon" type="image/png" href="images/fav.png"/>
 	</head>
   <body onload="app.onload(), app.onloadUsuario()">
-
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KQZFJ73"
+                    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
     <!-- Cabecera
     ================================================= -->
     <header id="header" >
@@ -142,21 +152,21 @@
                   <form name="basic-info" id="basic-info" class="form-inline">
                     <div class="row">
                       <div class="form-group col-xs-6">
-                        <label for="firstname">Nombre</label>
+                        <label for="nombre">Nombre</label>
                         <input id="nombre" class="form-control input-group-lg" type="text" placeholder="Nombre"/>
                       </div>
                       <div class="form-group col-xs-6">
-                        <label for="lastname" class="">Apellido</label>
+                        <label for="apellido" class="">Apellido</label>
                         <input id="apellido" class="form-control input-group-lg" type="text" placeholder="Apellido" />
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col-xs-12">
-                        <label for="email">Fecha de nacimiento</label>
+                        <label for="nacimiento">Fecha de nacimiento</label>
                         <input id="nacimiento" class="form-control input-group-lg" type="date"/>
                       </div>
                     </div>
-                    </div>
+
                     <div class="form-group gender">
                       <span class="custom-label"><strong>Genero: </strong></span>
                       <label class="radio-inline">
@@ -172,13 +182,13 @@
                         <input id="city" class="form-control input-group-lg" type="text"  title="Enter city" placeholder="Bogota" />
                       </div>
                       <div class="form-group col-xs-6">
-                        <label for="country">Mi pais</label>
+                        <label for="pais">Mi pais</label>
                         <input type="text" id="pais" class="form-control input-group-lg" placeholder="Mi pais">
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col-xs-6">
-                        <label for="imagen">Cambiar imagen de perfil</label>
+                        <label for="imagenPerfil">Cambiar imagen de perfil</label>
                         <input id= imagenPerfil  type="file" accept="image/*" onchange="app.setFile()" >
                       </div>
                     </div>
