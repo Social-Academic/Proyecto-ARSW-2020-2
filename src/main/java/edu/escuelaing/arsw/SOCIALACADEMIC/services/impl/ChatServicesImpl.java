@@ -19,7 +19,7 @@ public class ChatServicesImpl implements ChatServices {
 	@Qualifier("socialAcademyMensajePersistence")
 	private SocialAcademyMensajePersistence SocialAcademiMensaje;
 	@Autowired
-	@Qualifier("SocialAcademyChatPersistence")
+	@Qualifier("socialAcademyChatPersistence")
 	private SocialAcademyChatPersistence SocialAcademiChat;
 	@Override
 	public void guardarMensaje(int idChat, Mensaje newmensaje) {

@@ -23,6 +23,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		.antMatchers("/edit-profile-password.html").permitAll()
 		.antMatchers("/edit-profile-work-edu.html").permitAll()
 		.antMatchers("/timeline.html").permitAll()
+		.antMatchers("/newsfeed-messages.html").permitAll()
 		.antMatchers(HttpMethod.POST, "/usuarios").permitAll()
 		.anyRequest().authenticated();
 	}
