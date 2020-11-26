@@ -46,6 +46,7 @@ public class ChatServicesImpl implements ChatServices {
 
 	@Override
 	public List<List<String>> obtenerMensajes(int idChat, int idUsuario) {
+		System.out.println(idChat+" "+idUsuario);
 		List<List<String>> mensajesFin = new ArrayList<List<String>>();
 		Chat chat = findChatById(idChat);
 		List<Mensaje> infoMensaje = chat.getMensajes();
@@ -59,9 +60,9 @@ public class ChatServicesImpl implements ChatServices {
 			}else if(infoMensaje.get(i).getPropietario() != idUsuario) {
 				mensaje.add("izquierda");
 			}
+			mensajesFin.add(mensaje); 
 			
 		}
-		;
 		return mensajesFin;
 	}
 

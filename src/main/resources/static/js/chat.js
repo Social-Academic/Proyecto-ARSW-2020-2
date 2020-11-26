@@ -32,7 +32,7 @@ chat = (function (){
         }
     }
     function pintarChat(chat){
-        nombreAmigo = chat[0];
+        nombreAmigo = chat[1]+" "+chat[2];
         chat = `<li class="active">
                     <a onclick="chat.ubicarChat(${chat[0]})" data-toggle="tab">
                         <div class="contact">
