@@ -86,7 +86,7 @@ var app =(function (){
     }
 
     function  crearPublicacion(){
-        publicacion = $("#publicacion");
+        publicacion = $("#publicacion").val();
         if (publicacion == null){
             window.alert("hay nada");
 
