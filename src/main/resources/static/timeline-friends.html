@@ -1,19 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-      <!-- Google Tag Manager -->
-      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-KQZFJ73');</script>
-      <!-- End Google Tag Manager -->
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="This is social network html5 template available in themeforest......" />
 		<meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page" />
 		<meta name="robots" content="index, follow" />
-		<title>Social academy</title>
+		<title>My Friends | Friend Finder Friend List</title>
 
     <!-- Stylesheets
     ================================================= -->
@@ -28,12 +21,10 @@
     <!--Favicon-->
     <link rel="shortcut icon" type="image/png" href="images/fav.png"/>
 	</head>
-  <body onload="app.onload(), app.onloadUsuario()">
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KQZFJ73"
-                    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
+  <body onload="amigos.cargarAmigos()">
     <!-- Header
+    ================================================= -->
+	<!-- Header
     ================================================= -->
     <header id="header">
       <nav class="navbar navbar-default navbar-fixed-top menu">
@@ -94,9 +85,9 @@
                 <ul class="list-inline profile-menu">
                   <li><a href="timeline.html">Biografia</a></li>
                   <li><a>Sobre mi</a></li>
-                  <li><a class="active">Informacion</a></li>
-                  <li><a href="newsfeed-messages.html">mensajes</a></li>
-                  <li><a href="timeline-friends.html">Amigos</a></li>
+                  <li><a href="edit-profile-basic.html">Informacion</a></li>
+                  <li><a href="newsfeed-messages.html">Mensajes</a></li>
+                  <li><a href="timeline-friends.html" class="active">Amigos</a></li>
                 </ul>
                 <ul class="follow-me list-inline">
                   <li><button class="btn-primary">Agregar</button></li>
@@ -116,9 +107,9 @@
               <ul class="list-inline">
                 <li><a href="timeline.html">Biografia</a></li>
                 <li><a>Sobre mi</a></li>
-                <li><a class="active">Informacion</a></li>
-                <li><a href="newsfeed-messages.html">mensajes</a></li>
-                <li><a href="timeline-friends.html">Amigos</a></li>
+                <li><a href="edit-profile-basic.html">Informacion</a></li>
+                <li><a href="newsfeed-messages.html">Mensajes</a></li>
+                <li><a href="timeline-friends.html" class="active">Amigos</a></li>
               </ul>
               <li>
                 <button class="btn-primary">Agregar</button>
@@ -129,44 +120,15 @@
         </div>
         <div id="page-contents">
           <div class="row">
-            <div class="col-md-3">
-              
-              <!--Edit Profile Menu-->
-              <ul class="edit-menu">
-              	<li><i class="icon ion-ios-information-outline"></i><a href="edit-profile-basic.html">Informacion basica</a></li>
-              	<li><i class="icon ion-ios-briefcase-outline"></i><a href="edit-profile-work-edu.html">Educacion y trabajo</a></li>
-              	<li class="active"><i class="icon ion-ios-locked-outline"></i><a href="edit-profile-password.html">Cambiar contraseña</a></li>
-              </ul>
-            </div>
+            <div class="col-md-3"></div>
             <div class="col-md-7">
 
-              <!-- Change Password
+              <!-- Friend List
               ================================================= -->
-              <div class="edit-profile-container">
-                <div class="block-title">
-                  <h4 class="grey"><i class="icon ion-ios-locked-outline"></i>Cambiar contraseña</h4>
-                  <div class="line"></div>
+              <div class="friend-list">
+                <div class="row" id="Amistades">
+                  
                 </div>
-                <div class="edit-block">
-                  <form name="update-pass" id="education" class="form-inline">
-                    <div class="row">
-                      <div class="form-group col-xs-12">
-                        <label for="my-password">Antigua contraseña</label>
-                        <input id=oldPassword class="form-control input-group-lg" type="password" placeholder="Antigua contraseña"/>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="form-group col-xs-6">
-                        <label>Nueva contraseña</label>
-                        <input id=newPassword class="form-control input-group-lg" type="password" placeholder="Nueva contraseña"/>
-                      </div>
-                      <div class="form-group col-xs-6">
-                        <label>Confirma la nueva contraseña</label>
-                        <input id= confirmPassword class="form-control input-group-lg" type="password" placeholder="Confirmar nueva contraseña" />
-                      </div>
-                    </div>
-                    <button class="btn btn-primary">Actualizar contraseña</button>
-                  </form>
                 </div>
               </div>
             </div>
@@ -174,11 +136,6 @@
         </div>
       </div>
     </div>
-    <!--preloader-->
-    <div id="spinner-wrapper">
-      <div class="spinner"></div>
-    </div>
-
     <!-- Scripts
     ================================================= -->
     <script src="js/jquery-3.1.1.min.js"></script>
@@ -186,9 +143,11 @@
     <script src="js/jquery.sticky-kit.min.js"></script>
     <script src="js/jquery.scrollbar.min.js"></script>
     <script src="js/script.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/amigos.js"></script>
     <script src="js/apiclient.js"></script>
     <script src="js/login.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/chat.js"></script>
     
   </body>
 </html>

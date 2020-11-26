@@ -142,7 +142,7 @@ apiclient = (function () {
         },
         obtenerUsuario: function (id, callback,token) {
             jQuery.ajax({
-                url: apiUrl + id,
+                url: url+id,
                 headers: {"Authorization" : "Bearer "+token},
                 success: function (result) {
                     callback(result);
@@ -189,7 +189,79 @@ apiclient = (function () {
             }, function () {
                 console.info("ERROR");
             });
+        },
+        enviarMensaje: function (mensaje,usuario, amigo, callback){
+            var promise = $.ajax({
+                url: "/usuarios/chats/"+usuario+"/"+amigo,
+                method: "POST",
+                headers: {"Authorization" : "Bearer "+token},
+                data: JSON.stringify(mensaje),
+                contentType: "application/json"
+            });
+            promise.then(function (info) {
+                console.info("OK");
+                callback(info);
+            }, function () {
+                console.info("ERROR");
+            });
+        },
+        crearChat: function(idAmigo, id, token, callback){
+            var promise = $.ajax({
+                url: "/usuarios/chats/new/"+idAmigo+"/"+id,
+                method: "POST",
+                headers: {"Authorization" : "Bearer "+token},
+                contentType: "application/json"
+            });
+            promise.then(function (info) {
+                console.info("OK");
+                callback(info);
+            }, function () {
+                console.info("ERROR");
+            });
+        },
+        cargarAmistades: function(idUsuario, token, callback){
+            var promise = $.ajax({
+                url: "/usuarios/"+idUsuario+"/amigos",
+                method: "GET",
+                headers: {"Authorization" : "Bearer "+token},
+                contentType: "application/json"
+            });
+            promise.then(function (info) {
+                console.info("OK");
+                callback(info);
+            }, function () {
+                console.info("ERROR");
+            });
+        },
+        obtenerChats: function (id ,token, callback){
+            var promise = $.ajax({
+                url: "/usuarios/"+id+"/chats",
+                method: "GET",
+                headers: {"Authorization" : "Bearer "+token},
+                contentType: "application/json"
+            });
+            promise.then(function (info) {
+                console.info("OK");
+                callback(info);
+            }, function () {
+                console.info("ERROR");
+            });
+        },
+        obtenerMensajes: function(id, idchat, token, callback){
+            var promise = $.ajax({
+                url: "/usuarios/"+id+"/chats/"+idchat+"/mensajes",
+                method: "GET",
+                headers: {"Authorization" : "Bearer "+token},
+                contentType: "application/json"
+            });
+            promise.then(function (info) {
+                console.info("OK");
+                callback(info);
+            }, function () {
+                console.info("ERROR");
+            });
         }
+        
 
     }
 })();

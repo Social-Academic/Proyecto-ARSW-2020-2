@@ -104,6 +104,7 @@ var app =(function (){
             return new Error("No se encontro");
         }
         lista = [];
+        console.log(publi)
         var lista  = publi.map(function(pb){
             return {contenido:pb.contenido, idU:pb.idusuario, fecha:pb.fechaPublicacion, idP:pb.id}
         })

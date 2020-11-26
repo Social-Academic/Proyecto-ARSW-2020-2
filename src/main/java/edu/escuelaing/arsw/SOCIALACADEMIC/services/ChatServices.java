@@ -4,6 +4,7 @@ import java.util.List;
 
 import edu.escuelaing.arsw.SOCIALACADEMIC.model.Chat;
 import edu.escuelaing.arsw.SOCIALACADEMIC.model.Mensaje;
+import edu.escuelaing.arsw.SOCIALACADEMIC.model.Usuario;
 
 public interface ChatServices {
 
@@ -23,7 +24,8 @@ public interface ChatServices {
 
 	Chat crearChat(int idUsuario, int idAmigo);
 
-
 	Chat findChatByUsuarioAndAmigo(int usuario, int amigo);
+
+	List<List<String>> obtenerMensajes(int idChat, int idUsuario);
 
 }

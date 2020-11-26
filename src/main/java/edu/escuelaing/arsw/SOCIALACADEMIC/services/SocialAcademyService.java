@@ -3,6 +3,7 @@ package edu.escuelaing.arsw.SOCIALACADEMIC.services;
 import java.io.IOException;
 import java.util.List;
 
+import edu.escuelaing.arsw.SOCIALACADEMIC.model.Amigo;
 import edu.escuelaing.arsw.SOCIALACADEMIC.model.Publicacion;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,6 +29,8 @@ public interface SocialAcademyService {
     void agregarComentario(int id,int idPublicacion,String contenido);
 	Usuario findusuarioByCorreo(String correo);
 	void setPassword(int id, String[] datos) throws UsuarioServicesException;
+	List<List<String>> getAllAmigos(int idUsuario);
+	List<List<String>> ObtenerChats(int id);
 	
 
 }

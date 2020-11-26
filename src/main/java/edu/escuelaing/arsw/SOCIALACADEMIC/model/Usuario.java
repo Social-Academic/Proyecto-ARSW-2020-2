@@ -62,10 +62,9 @@ public class Usuario implements Serializable {
 	private String ciudadTrabajo;
 	@Column(name = "descripcion_trabajo")
 	private String descripcionTrabajo;
-	
+
 	private String fotoPerfil;
-	
-	
+
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "FK_INTERESES")
 	private List<Interes> intereses;
@@ -80,19 +79,24 @@ public class Usuario implements Serializable {
 	@JoinColumn(name = "FK_COMENTARIOS")
 	private List<Comentario> comentarios = new CopyOnWriteArrayList<>();
 
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "usuario")
+	private List<Chat> chats = new ArrayList<Chat>();
 
 	public Usuario() {
-		
+
 	}
-	public Usuario(String nombre, String apellido, String correo, String passwd, String fecha, String genero, String ciudad, Boolean enabled) {
-		this.nombre= nombre;
+
+	public Usuario(String nombre, String apellido, String correo, String passwd, String fecha, String genero,
+			String ciudad, Boolean enabled) {
+		this.nombre = nombre;
 		this.apellido = apellido;
 		this.correo = correo;
 		this.password = passwd;
-		this.fecha = fecha; 
+		this.fecha = fecha;
 		this.genero = genero;
 		this.ciudad = ciudad;
-		this.enabled = enabled; 
+		this.enabled = enabled;
 
 	}
 
@@ -156,6 +160,14 @@ public class Usuario implements Serializable {
 
 	public String getApellido() {
 		return apellido;
+	}
+
+	public List<Chat> getChats() {
+		return chats;
+	}
+
+	public void setChats(List<Chat> chats) {
+		this.chats = chats;
 	}
 
 	public void setApellido(String apellido) {
@@ -225,12 +237,15 @@ public class Usuario implements Serializable {
 	public void setDescripcionUniversiad(String descripcionUniversiad) {
 		this.descripcionUniversiad = descripcionUniversiad;
 	}
+
 	public boolean isEnabled() {
 		return enabled;
 	}
+
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
+
 	public String getEmpresa() {
 		return empresa;
 	}
@@ -280,17 +295,20 @@ public class Usuario implements Serializable {
 	}
 
 	public List<Interes> getIntereses() {
-		if(intereses.equals(null)) {
-			intereses = new ArrayList<>(); 
+		if (intereses.equals(null)) {
+			intereses = new ArrayList<>();
 		}
 		return intereses;
 	}
+
 	public void setIntereses(List<Interes> intereses) {
 		this.intereses = intereses;
 	}
+
 	public void setComentarios(List<Comentario> comentarios) {
 		this.comentarios = comentarios;
 	}
+
 	public String getFotoPerfil() {
 		return fotoPerfil;
 	}

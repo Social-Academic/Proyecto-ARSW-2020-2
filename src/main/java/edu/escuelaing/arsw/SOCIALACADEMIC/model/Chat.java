@@ -28,7 +28,7 @@ public class Chat implements Serializable {
 	private int usuario;
 	@Column(length = 10, updatable = false)
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "FK_Mensajes")
+	@JoinColumn(name = "idChat")
 	private List<Mensaje> mensajes;
 	
 	public Chat() {

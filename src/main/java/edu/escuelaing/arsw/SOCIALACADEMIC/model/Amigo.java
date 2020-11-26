@@ -19,6 +19,14 @@ public class Amigo implements Serializable {
 	@Column(unique = true)
 	private int amigo;
 
+	public int getAmigo() {
+		return amigo;
+	}
+
+	public void setAmigo(int amigos) {
+		this.amigo = amigos;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -27,12 +35,5 @@ public class Amigo implements Serializable {
 		this.id = id;
 	}
 
-	public int getAmigo() {
-		return amigo;
-	}
-
-	public void setAmigo(int amigo) {
-		this.amigo = amigo;
-	}
 	private static final long serialVersionUID = 1L;
 }
