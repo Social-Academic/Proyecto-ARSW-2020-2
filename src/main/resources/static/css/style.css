@@ -2638,6 +2638,8 @@ ul.contact li i{
   animation: sk-rotateplane 1.2s infinite ease-in-out;
 }
 
+
+
 @-webkit-keyframes sk-rotateplane {
   0% { -webkit-transform: perspective(120px) }
   50% { -webkit-transform: perspective(120px) rotateY(180deg) }
@@ -2666,5 +2668,20 @@ ul.contact li i{
   background-color: #fff;
   z-index: 9999999;
 }
-
+.boton_personalizado{
+    text-decoration: none;
+    padding: 4px;
+    margin-top: 10px;
+    margin-bottom: 4px;
+    font-weight: 60;
+    font-size: 10px;
+    color: #ffffff;
+    background-color: #27aae1;
+    border-radius: 3px;
+    border: 2px solid #27aae1;
+}
+.boton_personalizado:hover{
+    color: #1883ba;
+    background-color: #ffffff;
+}
 

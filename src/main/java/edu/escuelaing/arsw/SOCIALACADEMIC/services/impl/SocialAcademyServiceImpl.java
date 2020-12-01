@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import edu.escuelaing.arsw.SOCIALACADEMIC.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,12 +17,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import edu.escuelaing.arsw.SOCIALACADEMIC.model.Amigo;
-import edu.escuelaing.arsw.SOCIALACADEMIC.model.Chat;
-import edu.escuelaing.arsw.SOCIALACADEMIC.model.Comentario;
-import edu.escuelaing.arsw.SOCIALACADEMIC.model.Interes;
-import edu.escuelaing.arsw.SOCIALACADEMIC.model.Publicacion;
-import edu.escuelaing.arsw.SOCIALACADEMIC.model.Usuario;
 import edu.escuelaing.arsw.SOCIALACADEMIC.persistence.SocialAcademyPublicacionPersistence;
 import edu.escuelaing.arsw.SOCIALACADEMIC.persistence.SocialAcademyUsuarioPersistence;
 import edu.escuelaing.arsw.SOCIALACADEMIC.services.SocialAcademyService;
@@ -194,7 +189,7 @@ public class SocialAcademyServiceImpl implements SocialAcademyService {
 		// Guardamos el comentario en la persona que lo hace
 		Usuario usuarioTemp1 = findUsuarioById(id);
 		Publicacion publicacionTemp = findPublicacionById(idPublicacion);
-		Comentario newComentario = new Comentario(contenido);
+		Comentario newComentario = new Comentario(contenido,id);
 		usuarioTemp1.getComentarios().add(newComentario);
 		saveUsuario(usuarioTemp1);
 
@@ -267,5 +262,55 @@ public class SocialAcademyServiceImpl implements SocialAcademyService {
 		}
 		return chats; 
 	}
-	
+	@Override
+	public void agregarReaccion( int idPublicacion, String reaccion) {
+
+		Publicacion publicacionTemp = findPublicacionById(idPublicacion);
+		Reaccion newReaccion = new Reaccion(Integer.parseInt(reaccion));
+		int usuario = publicacionTemp.getIdusuario();
+		Usuario usuarioTemp = findUsuarioById(usuario);
+		for(Publicacion i: usuarioTemp.getPublicaciones()){
+			if (i.getId() == idPublicacion){
+				i.getReacciones().add(newReaccion);
+				saveUsuario(usuarioTemp);
+				break;
+			}
+		}
+	}
+
+	@Override
+	public int obtnerReaccionBien(int idUsuario, int idPublicacion) {
+		Publicacion publicacionTemp = findPublicacionById(idPublicacion);
+		List<Reaccion> tempReacciones = publicacionTemp.getReacciones();
+		int totalBien = 1;
+
+		for (Reaccion i:tempReacciones){
+			if(i.getTipo() == 1) {
+				totalBien += 1;
+			}
+		}
+		return totalBien;
+	}
+	@Override
+	public int obtnerReaccionMal(int idUsuario, int idPublicacion) {
+		Publicacion publicacionTemp = findPublicacionById(idPublicacion);
+		List<Reaccion> tempReacciones = publicacionTemp.getReacciones();
+		int totalMal = 1;
+
+		for (Reaccion i:tempReacciones){
+			if(i.getTipo() == 0) {
+				totalMal += 1;
+			}
+		}
+		return totalMal;
+	}
+
+	@Override
+	public List<Comentario> ontenerComentarios(int idUPublicacion, int idP) {
+		Usuario temp = findUsuarioById(idUPublicacion);
+		Publicacion tempPublicaciones = temp.getPublicaciones().get(idP-1);
+		return tempPublicaciones.getComentarios();
+	}
+
+
 }

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import edu.escuelaing.arsw.SOCIALACADEMIC.model.Amigo;
+import edu.escuelaing.arsw.SOCIALACADEMIC.model.Comentario;
 import edu.escuelaing.arsw.SOCIALACADEMIC.model.Publicacion;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -31,6 +32,8 @@ public interface SocialAcademyService {
 	void setPassword(int id, String[] datos) throws UsuarioServicesException;
 	List<List<String>> getAllAmigos(int idUsuario);
 	List<List<String>> ObtenerChats(int id);
-	
-
+    void agregarReaccion( int idPublicacion, String reaccion);
+    int obtnerReaccionBien(int idUsuario, int idPublicacion);
+    int obtnerReaccionMal(int idUsuario, int idPublicacion);
+    List<Comentario> ontenerComentarios(int idUPublicacion, int idP);
 }

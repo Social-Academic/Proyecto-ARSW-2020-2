@@ -140,5 +140,24 @@ public class SocialAcademyApiController {
 	public ResponseEntity<?> ObtenerMensajes(@PathVariable int idUsuario, @PathVariable int idChat) {
 		return new ResponseEntity<>(chatServices.obtenerMensajes(idChat, idUsuario), HttpStatus.ACCEPTED);
 	}
+	@RequestMapping(method = RequestMethod.POST, value  = "/{id}/publicaciones/{idPublicacion}/reacciones")
+	public ResponseEntity<?> crearReaccion(@RequestBody String reaccion, @PathVariable int idPublicacion, @PathVariable int id){
+
+		sas.agregarReaccion(idPublicacion,reaccion);
+		return new ResponseEntity<>(HttpStatus.ACCEPTED);
+	}
+	@RequestMapping(method = RequestMethod.GET, value  = "/{id}/publicaciones/{idPublicacion}/reacciones/buenas")
+	public ResponseEntity<?> obtenerReaccionesBien(@PathVariable int idPublicacion, @PathVariable int id){
+		return new ResponseEntity<>(sas.obtnerReaccionBien(id,idPublicacion),HttpStatus.ACCEPTED);
+	}
+	@RequestMapping(method = RequestMethod.GET, value  = "/{id}/publicaciones/{idPublicacion}/reacciones/malas")
+	public ResponseEntity<?> obtenerReaccionesMal(@PathVariable int idPublicacion, @PathVariable int id){
+		return new ResponseEntity<>(sas.obtnerReaccionMal(id,idPublicacion),HttpStatus.ACCEPTED);
+	}
+	@RequestMapping(method = RequestMethod.GET, value = "/{idUPublicacion}/publicaciones/{idP}/comentarios")
+	public ResponseEntity<?> obtenerComentarios(@PathVariable int idUPublicacion, @PathVariable int idP) {
+
+		return new ResponseEntity<>(sas.ontenerComentarios(idUPublicacion,idP),HttpStatus.ACCEPTED);
+	}
 
 }

@@ -260,8 +260,76 @@ apiclient = (function () {
             }, function () {
                 console.info("ERROR");
             });
+        },
+        crearReacion: function (id,reaccion,idPublicacion,token){
+            var promise = $.ajax({
+                url: url+id+"/publicaciones/"+idPublicacion+"/reacciones",
+                method: "POST",
+                timeout: 0,
+                headers: {"Authorization" : "Bearer "+token, "Content-Type": "text/plain"},
+                data: reaccion.toString(),
+
+            });
+            promise.then(function () {
+                console.info("OK");
+                //callback();
+            }, function () {
+                console.info("ERROR");
+            });
+        },
+        obtenerReaccionesBien:function(idUsuario, idPublicacion, token,callback){
+            jQuery.ajax({
+                url: url+idUsuario+"/publicaciones/"+idPublicacion+"/reacciones/buenas",
+                method: "GET",
+                headers: {"Authorization" : "Bearer "+token},
+                contentType: "application/json",
+
+                success: function (result) {
+                    callback(result,idPublicacion);
+                },
+                async: true
+            });
+        },
+        obtenerReaccionesMal:function(idUsuario, idPublicacion, token,callback){
+            jQuery.ajax({
+                url: url+idUsuario+"/publicaciones/"+idPublicacion+"/reacciones/malas",
+                method: "GET",
+                headers: {"Authorization" : "Bearer "+token},
+                contentType: "application/json",
+
+                success: function (result) {
+                    callback(result,idPublicacion);
+                },
+                async: true
+            });
+        },
+        crearComentario: function (idU, idP, comentario,idUPublicacion, token,callback){
+            var promise = $.ajax({
+                url: url+idU+"/publicaciones/"+idP+"/comentarios",
+                method: "POST",
+                timeout: 0,
+                headers: {"Authorization" : "Bearer "+token, "Content-Type": "text/plain"},
+                data: comentario,
+            });
+            promise.then(function () {
+                console.info("OK");
+                callback(idP,idUPublicacion);
+            }, function () {
+                console.info("ERROR");
+            });
+        },
+        obtenerComentario: function (idUPublicacion,idP, callback, token) {
+
+            jQuery.ajax({
+                url: url+idUPublicacion+"/publicaciones/"+idP+"/comentarios",
+                headers: {"Authorization" : "Bearer "+token},
+                success: function (result) {
+                    callback(result);
+                },
+                async: true
+            });
         }
-        
+
 
     }
 })();

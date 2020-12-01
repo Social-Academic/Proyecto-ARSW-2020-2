@@ -13,15 +13,26 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "reacciones")
 public class Reaccion  implements Serializable {
-	
-	@Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     @Column(length = 360, updatable = true)
     private int tipo;
 
-    
-	private static final long serialVersionUID = 1L;
+
+    public Reaccion(int tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getTipo() {
+        return tipo;
+    }
+
+    public Reaccion() {
+
+    }
+    private static final long serialVersionUID = 1L;
 
 
 }
