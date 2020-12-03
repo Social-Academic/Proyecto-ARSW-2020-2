@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="This is social network html5 template available in themeforest......" />
+		<meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page" />
+		<meta name="robots" content="index, follow" />
+		<title>Sobre mi</title>
+
+    <!-- Stylesheets
+    ================================================= -->
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/ionicons.min.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    
+    <!--Google Font-->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i" rel="stylesheet">
+    
+    <!--Favicon-->
+    <link rel="shortcut icon" type="image/png" href="images/fav.png"/>
+	</head>
+  <body onload="app.onload(), app.onloadUsuario() , app.obtenerInfoUsuario()">
+
+  <!-- Header
+================================================= -->
+  <header id="header">
+    <nav class="navbar navbar-default navbar-fixed-top menu">
+      <div class="container">
+
+
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                  data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="newsfeed.html"><img src="images/logo.png" alt="logo"/></a>
+        </div>
+
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right main-menu">
+
+            <li><a>Principal</a></li>
+            <li><a href="timeline.html">Biografia</a></li>
+            <li><a>Chats</a></li>
+            <li>
+              <a onclick="login.cerrarSesion()">Cerrar sesion</a>
+            </li>
+          </ul>
+          <form class="navbar-form navbar-right hidden-sm">
+            <div class="form-group">
+              <i class="icon ion-android-search"></i>
+              <input type="text" class="form-control" placeholder="Search friends, photos, videos">
+            </div>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!--Header End-->
+
+    <div class="container">
+
+      <!-- Timeline
+      ================================================= -->
+      <div class="timeline">
+        <div class="timeline-cover">
+
+          href="timeline.html"
+
+          <!--Timeline Menu for Large Screens-->
+          <div class="timeline-nav-bar hidden-sm hidden-xs">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="profile-info">
+                  <img src="images/ecdbe23f-5164-480d-affe-02f751f1c8ff_WhatsApp%20Image%202019-06-21%20at%203.51.09%20PM.jpeg"
+                       alt="" class="img-responsive profile-photo"/>
+                  <h3 id=nombreUsuario></h3>
+                  <p id=puesto></p>
+                </div>
+              </div>
+              <div class="col-md-9">
+                <ul class="list-inline profile-menu">
+                  <li><a href="timeline.html">Biografia</a></li>
+                  <li><a class="active">Sobre mi</a></li>
+                  <li><a href="edit-profile-basic.html">Informacion</a></li>
+                  <li><a href="newsfeed-messages.html">mensajes</a></li>
+                  <li><a href="timeline-friends.html">Amigos</a></li>
+                </ul>
+                <ul class="follow-me list-inline">
+                  <li>1,299 Seguidores</li>
+                  <li>
+                    <button class="btn-primary">Agregar</button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div><!--Timeline Menu for Large Screens End-->
+          <!--Timeline Menu for Small Screens-->
+          <div class="navbar-mobile hidden-lg hidden-md">
+            <div class="profile-info">
+              <img src="images/ecdbe23f-5164-480d-affe-02f751f1c8ff_WhatsApp%20Image%202019-06-21%20at%203.51.09%20PM.jpeg" alt="" class="img-responsive profile-photo"/>
+              <h4 id = nombreUsuarioRespons> </h4>
+              <p class="text-muted" id=puestoRespons ></p>
+            </div>
+            <div class="mobile-menu">
+              <ul class="list-inline">
+                <li><a href="timeline.html">Biografia</a></li>
+                <li><a class="active">Sobre mi</a></li>
+                <li><a href="edit-profile-basic.html">Informacion</a></li>
+                <li><a href="newsfeed-messages.html">mensajes</a></li>
+                <li><a href="timeline-friends.html">Amigos</a></li>
+              </ul>
+              <li>
+                <button class="btn-primary">Agregar</button>
+              </li>
+            </div>
+          </div><!--Timeline Menu for Small Screens End-->
+
+        </div>
+        <div id="page-contents">
+          <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-7">
+
+              <!-- About
+              ================================================= -->
+              <div class="about-profile">
+                <div class="about-content-block">
+                  <h4 class="grey"><ion-icon name="alert-circle-outline"></ion-icon>Informacion Personal</h4>
+                  <p id="infoPersonal"></p>
+                </div>
+                <div class="about-content-block">
+                  <h4 class="grey"><ion-icon name="briefcase-outline"></ion-icon>Experiencia Laboral</h4>
+                  <div class="organization">
+                    <img src="images/envato.png" alt="" class="pull-left img-org" />
+                    <div class="work-info">
+                      <h5 id="empresa"></h5>
+                      <p id="cargo"><span id="fechas"class="text-grey"></span></p>
+                      <p id="descripcionTrabajo"></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="about-content-block">
+                  <h4 class="grey"><ion-icon name="location-outline"></ion-icon>Lugar de Vivienda</h4>
+                  <p id="ubicacion"></p>
+                  <div class="google-maps">
+                    <div id="map" class="map"></div>
+                  </div>
+                </div>
+                <div class="about-content-block">
+                  <h4 class="grey"><ion-icon name="school-outline"></ion-icon> Educacion</h4>
+                    <img src="images/envato.png" alt="" class="pull-left img-org" />
+                    <div class="Edu-info">
+                      <h5 id="universidad"></h5>
+                      <p id="carrera"><span id="fechasU"class="text-grey"></span></p>
+                      <p id="descripcionUni"></p>
+                    </div>
+                </div>
+                <div class="about-content-block">
+                  <h4 class="grey"><ion-icon name="accessibility-outline"></ion-icon>Fecha de Nacimiento</h4>
+                    <a id="fechaNacimiento"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!--preloader-->
+    <div id="spinner-wrapper">
+      <div class="spinner"></div>
+    </div>
+
+    <!-- Scripts
+    ================================================= -->
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+
+
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1S2jTuGvQgOAgT-o5mSGOMI53gLnZXRg&callback=initMap" type="text/javascript"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.sticky-kit.min.js"></script>
+    <script src="js/jquery.scrollbar.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/apiclient.js"></script>
+    <script src="js/login.js"></script>
+    <style type="text/css">
+      #map {
+        height: 150px;
+        width: 592px;
+      }
+    </style>
+    <script>
+      function initMap() {
+        const uluru = {lat: 4.61, lng: -74.08};
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 7,
+          center: uluru,
+        });
+        //The marker, positioned at Uluru
+        const marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+        });
+
+      }
+
+    </script>
+    
+  </body>
+</html>

@@ -328,7 +328,17 @@ apiclient = (function () {
                 },
                 async: true
             });
+        },
+        getWeatherByName: function (name, callback) {
+            jQuery.ajax({
+                url: "http://api.openweathermap.org/data/2.5/weather?q="+name+"&appid=dfe0bcf2c9fa6e5cd6cf29a71de1ae77",
+                success: function (result) {
+                    callback(result);
+                },
+                async: true
+            });
         }
+
 
 
     }

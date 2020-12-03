@@ -116,7 +116,7 @@ var app = (function () {
             return new Error("No se encontro");
         }
         lista = [];
-        console.log(publi)
+
         var lista = publi.map(function (pb) {
             return {contenido: pb.contenido, idU: pb.idusuario, fecha: pb.fechaPublicacion, idP: pb.id}
         })
@@ -160,9 +160,7 @@ var app = (function () {
                 
                             </div>`
             $("#divPublicaciones").append(div);
-
         })
-
     }
 
     function pintarComentarios(publi) {
@@ -175,19 +173,19 @@ var app = (function () {
         });
         var nombre = localStorage.getItem("nombreUsuario");
         var ruta = "#comentarios"+publicacionID;
+        $(ruta).empty();
         lista.map(function (pb) {
             var div = `<div class="post-comment">
                        <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm" />
                        <p><a href="timeline.html" class="profile-link"> ${nombre} </a> ${pb.contenido} </p>
                        </div>`
             $(ruta).append(div);
-
         })
-
     }
 
     function cargarPublicaciones() {
         apiclient.obtenerPublicaciones(localStorage.getItem("id"), pintarPublicaciones, localStorage.getItem("Authorization"));
+        apiclient.obtenerPublicaciones(localStorage.getItem("id"),pintarCometarioalIniciar, localStorage.getItem("Authorization"));
     }
 
     function crearReaccion(reaccion, idpubli, idU) {
@@ -214,9 +212,64 @@ var app = (function () {
     }
 
     function cargarComentario(idP,idUPublicacion){
+        publicacionID = idP;
         apiclient.obtenerComentario(idUPublicacion,idP, pintarComentarios, localStorage.getItem("Authorization"))
     }
 
+
+    function pintarCometarioalIniciar(publi){
+        if (publi == null) {
+            return new Error("No se encontro");
+        }
+        lista = [];
+        var lista = publi.map(function (pb) {
+            return {idU: pb.idusuario, idP: pb.id}
+        })
+        lista.map(function (pb) {
+            console.log(pb);
+            cargarComentario(pb.idP,pb.idU);
+        })
+
+    }
+    function obtenerUsuario(){
+        apiclient.obtenerUsuario(localStorage.getItem("id"),pintarInfo,localStorage.getItem("Authorization"));
+    }
+    function pintarInfo(usuario){
+        if (usuario == null) {
+            return new Error("No se encontro");
+        }
+
+        app.getWeatherByName(usuario.ciudad);
+        $("#infoPersonal").text(usuario.descripcion);
+        $("#empresa").text(usuario.empresa);
+        $("#cargo").text(usuario.cargo);
+        $("#descripcionTrabajo").text(usuario.descripcionTrabajo);
+        $("#fechas").text(usuario.inicioTrabajo);
+        $("#universidad").text(usuario.universidad);
+        $("#carrera").text(usuario.carrera);
+        $("#fechasU").text(usuario.inicioUniversidad);
+        $("#descripcionUni").text(usuario.descripcionUniversiad);
+        $("#fechaNacimiento").text(usuario.fecha);
+        $("#ubicacion").text(usuario.ciudad);
+
+
+    }
+    function initMap(mapa) {
+        console.log(mapa);
+
+        lati = mapa.coord.lat;
+        longi = mapa.coord.lon;
+
+        const uluru = {lat: lati, lng: longi};
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 10,
+            center: uluru,
+        });
+        const marker = new google.maps.Marker({
+            position: uluru,
+            map: map,
+        });
+    }
 
     return {
         updatePassword: updatePassword,
@@ -251,11 +304,14 @@ var app = (function () {
         obtenerReaccionesMal(idUsuario, idPublicacion) {
             obtenerReaccionesMal(idUsuario, idPublicacion);
         },
-
-
         crearComentario(idPublicacion,comentario, idUsuarioPublicacion) {
             publicacionID = idPublicacion;
             crearComentario(idPublicacion,comentario,idUsuarioPublicacion);
+        },
+        obtenerInfoUsuario: obtenerUsuario,
+        getWeatherByName: function getDatos(nombre) {
+            apiclient.getWeatherByName(nombre, initMap );
         }
+
     }
 })();

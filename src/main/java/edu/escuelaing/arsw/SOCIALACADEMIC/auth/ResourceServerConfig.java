@@ -25,6 +25,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		.antMatchers("/timeline.html").permitAll()
 		.antMatchers("/newsfeed-messages.html").permitAll()
 		.antMatchers("/timeline-friends.html").permitAll()
+		.antMatchers("/timeline-about.html").permitAll()
 		.antMatchers(HttpMethod.POST, "/usuarios").permitAll()
 		.anyRequest().authenticated();
 	}
