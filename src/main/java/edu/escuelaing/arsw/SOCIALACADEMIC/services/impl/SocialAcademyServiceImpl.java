@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import edu.escuelaing.arsw.SOCIALACADEMIC.persistence.SocialAcademyChatPersistence;
 import edu.escuelaing.arsw.SOCIALACADEMIC.persistence.SocialAcademyPublicacionPersistence;
 import edu.escuelaing.arsw.SOCIALACADEMIC.persistence.SocialAcademyUsuarioPersistence;
 import edu.escuelaing.arsw.SOCIALACADEMIC.services.SocialAcademyService;
@@ -31,6 +32,9 @@ public class SocialAcademyServiceImpl implements SocialAcademyService {
 	@Autowired
 	@Qualifier("socialAcademyPublicacionPersistence")
 	private SocialAcademyPublicacionPersistence spp;
+	@Autowired
+	@Qualifier("socialAcademyChatPersistence")
+	private SocialAcademyChatPersistence chatServices;
 
 	@Autowired
 	private BCryptPasswordEncoder passworEncoder;
@@ -252,13 +256,21 @@ public class SocialAcademyServiceImpl implements SocialAcademyService {
 		List<List<String>> chats = new ArrayList<List<String>>();
 		
 		Usuario usuario = findUsuarioById(id);
-		List<Chat> chat = usuario.getChats();
-		for (int i = 0; i < chat.size(); i++) {
+		List<Propietarios> infoAmistades = usuario.getChats();
+		for (int i = 0; i < infoAmistades.size(); i++) {
+			Chat chat = findChatById(infoAmistades.get(i).getChat());
 			List<String> infoChats = new ArrayList<String>();
-			infoChats.add(Integer.toString(chat.get(i).getId()));
-			infoChats.add(findUsuarioById(chat.get(i).getAmigo()).getNombre());
-			infoChats.add(findUsuarioById(chat.get(i).getAmigo()).getApellido());
+			infoChats.add(Integer.toString(chat.getId()));
+			if (chat.getAmigo() == id) {
+				Usuario amigo = findUsuarioById(chat.getUsuario());
+				infoChats.add(amigo.getNombre()); 
+				infoChats.add(amigo.getApellido());
+			}else {
+				infoChats.add(findUsuarioById(chat.getAmigo()).getNombre());
+				infoChats.add(findUsuarioById(chat.getAmigo()).getApellido());
+			}
 			chats.add(infoChats);
+			
 		}
 		return chats; 
 	}
@@ -310,6 +322,11 @@ public class SocialAcademyServiceImpl implements SocialAcademyService {
 		Usuario temp = findUsuarioById(idUPublicacion);
 		Publicacion tempPublicaciones = temp.getPublicaciones().get(idP-1);
 		return tempPublicaciones.getComentarios();
+	}
+	@Override
+	@Transactional(readOnly = true)
+	public Chat findChatById(int id) {
+		return chatServices.findById(id).orElse(null);
 	}
 
 

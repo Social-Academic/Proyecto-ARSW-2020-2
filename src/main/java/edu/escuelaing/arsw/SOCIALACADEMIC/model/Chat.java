@@ -30,6 +30,10 @@ public class Chat implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "idChat")
 	private List<Mensaje> mensajes;
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "chat")
+	private List<Propietarios> idChat;
+	
 	
 	public Chat() {
 	}
@@ -60,6 +64,12 @@ public class Chat implements Serializable {
 	}
 	public void setMensajes(List<Mensaje> mensajes) {
 		this.mensajes = mensajes;
+	}
+	public List<Propietarios> getIdChat() {
+		return idChat;
+	}
+	public void setIdChat(List<Propietarios> idChat) {
+		this.idChat = idChat;
 	}
 	
 	/**

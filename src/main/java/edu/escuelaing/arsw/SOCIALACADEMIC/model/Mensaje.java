@@ -20,12 +20,14 @@ public class Mensaje implements Serializable {
 	private String mensaje;
 	private String fecha;
 	private int propietario;
+	private int idChat;
 	public Mensaje() {
 		
 	}
-	public Mensaje(String mensaje, int propietario) {
+	public Mensaje(String mensaje, int propietario, int idChat) {
 		this.mensaje = mensaje;
 		Date date = new Date();
+		this.idChat = idChat;
 		this.propietario = propietario;
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:MM");
 		fecha = formatter.format(date);
@@ -62,6 +64,12 @@ public class Mensaje implements Serializable {
 	public void setPropietario(int propietario) {
 		this.propietario = propietario;
 	}
+	
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 
 	/**
 	 * 

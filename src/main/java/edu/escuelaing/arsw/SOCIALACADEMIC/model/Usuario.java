@@ -81,7 +81,7 @@ public class Usuario implements Serializable {
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "usuario")
-	private List<Chat> chats = new ArrayList<Chat>();
+	private List<Propietarios> chats = new ArrayList<Propietarios>();
 
 	public Usuario() {
 
@@ -162,11 +162,11 @@ public class Usuario implements Serializable {
 		return apellido;
 	}
 
-	public List<Chat> getChats() {
+	public List<Propietarios> getChats() {
 		return chats;
 	}
 
-	public void setChats(List<Chat> chats) {
+	public void setChats(List<Propietarios> chats) {
 		this.chats = chats;
 	}
 

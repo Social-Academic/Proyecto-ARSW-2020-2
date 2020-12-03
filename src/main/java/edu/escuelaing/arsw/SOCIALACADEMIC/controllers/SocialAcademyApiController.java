@@ -122,7 +122,7 @@ public class SocialAcademyApiController {
 
 	@RequestMapping(method = RequestMethod.POST, value = "{idUsuario}/chats/{idChat}")
 	public ResponseEntity<?> guardarMensaje(@PathVariable int idChat,@PathVariable int idUsuario, @RequestBody String stringMensaje) {
-		Mensaje mensaje = new Mensaje(stringMensaje, idUsuario);
+		Mensaje mensaje = new Mensaje(stringMensaje, idUsuario, idChat);
 		chatServices.guardarMensaje(idChat, mensaje);
 		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}

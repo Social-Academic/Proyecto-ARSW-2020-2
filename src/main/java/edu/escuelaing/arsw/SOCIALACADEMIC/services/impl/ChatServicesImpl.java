@@ -2,7 +2,6 @@ package edu.escuelaing.arsw.SOCIALACADEMIC.services.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,10 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.escuelaing.arsw.SOCIALACADEMIC.model.Chat;
 import edu.escuelaing.arsw.SOCIALACADEMIC.model.Mensaje;
-import edu.escuelaing.arsw.SOCIALACADEMIC.model.Usuario;
 import edu.escuelaing.arsw.SOCIALACADEMIC.persistence.SocialAcademyChatPersistence;
 import edu.escuelaing.arsw.SOCIALACADEMIC.persistence.SocialAcademyMensajePersistence;
-import edu.escuelaing.arsw.SOCIALACADEMIC.persistence.SocialAcademyUsuarioPersistence;
 import edu.escuelaing.arsw.SOCIALACADEMIC.services.ChatServices;
 
 @Service
@@ -54,13 +51,12 @@ public class ChatServicesImpl implements ChatServices {
 			List<String> mensaje = new ArrayList<String>();
 			mensaje.add(infoMensaje.get(i).getFecha());
 			mensaje.add(infoMensaje.get(i).getMensaje());
-			System.out.println(infoMensaje.get(i).getMensaje());
-			if(infoMensaje.get(i).getPropietario() == idUsuario) {
+			if(infoMensaje.get(i).getPropietario() != idUsuario) {
 				mensaje.add("derecha");
-			}else if(infoMensaje.get(i).getPropietario() != idUsuario) {
+			}else if(infoMensaje.get(i).getPropietario() == idUsuario) {
 				mensaje.add("izquierda");
 			}
-			mensajesFin.add(mensaje); 
+			mensajesFin.add(mensaje);
 			
 		}
 		return mensajesFin;
@@ -100,7 +96,7 @@ public class ChatServicesImpl implements ChatServices {
 	public Mensaje findMensajeById(int id) {
 		return SocialAcademiMensaje.findById(id).orElse(null);
 	}
-
+	
 	@Override
 	@Transactional
 	public void saveMensaje(Mensaje mensaje) {

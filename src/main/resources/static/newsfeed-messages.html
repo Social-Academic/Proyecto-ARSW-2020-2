@@ -30,7 +30,7 @@
     <!--Favicon-->
     <link rel="shortcut icon" type="image/png" href="images/fav.png"/>
 	</head>
-  <body onload="chat.cargarChats()">
+  <body onload="chat.cargarChats(), app.onload(), app.onloadUsuario()">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KQZFJ73"
                     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -85,7 +85,7 @@
           ================================================= -->
     			<div class="col-md-3 static">
             <div class="profile-card">
-            	<img src="http://placehold.it/300x300" alt="user" class="profile-photo" />
+            	<img src="images/ecdbe23f-5164-480d-affe-02f751f1c8ff_WhatsApp%20Image%202019-06-21%20at%203.51.09%20PM.jpeg" alt="user" class="profile-photo" />
             	<h5><a href="timeline.html" class="text-white">Nombre de usuario</a></h5>
             	<a href="#" class="text-white"><i class="ion ion-android-person-add"></i> 1,299 Amigos</a>
             </div><!--profile card ends-->
@@ -106,7 +106,7 @@
             	<div class="row">
             		<div class="col-md-7 col-sm-7">
                   <div class="form-group">
-                    <img src="http://placehold.it/300x300" alt="" class="profile-photo-md" />
+                    <img src="images/ecdbe23f-5164-480d-affe-02f751f1c8ff_WhatsApp%20Image%202019-06-21%20at%203.51.09%20PM.jpeg" alt="" class="profile-photo-md" />
                     <textarea name="texts" id="exampleTextarea" cols="30" rows="1" class="form-control" placeholder="¿Que estas pensando?"></textarea>
                   </div>
                 </div>
@@ -152,7 +152,7 @@
                     <div class="input-group">
                       <input id="campoMensaje" type="text" class="form-control" placeholder="Escribe tu mensaje">
                       <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Enviar</button>
+                        <button class="btn btn-default" type="button" onclick="chat.enviarMensaje($('#campoMensaje').val())">Enviar</button>
                       </span>
                     </div>
                   </div>
@@ -189,6 +189,9 @@
     <script src="js/apiclient.js"></script>
     <script src="js/login.js"></script>
     <script src="js/chat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.4.0/dist/sockjs.min.js" type="text/javascript" ></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js" type="text/javascript"></script>
 
   </body>
 </html>
