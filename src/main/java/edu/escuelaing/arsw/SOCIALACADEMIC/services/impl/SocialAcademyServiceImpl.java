@@ -320,8 +320,13 @@ public class SocialAcademyServiceImpl implements SocialAcademyService {
 	@Override
 	public List<Comentario> ontenerComentarios(int idUPublicacion, int idP) {
 		Usuario temp = findUsuarioById(idUPublicacion);
-		Publicacion tempPublicaciones = temp.getPublicaciones().get(idP-1);
-		return tempPublicaciones.getComentarios();
+		List<Publicacion> tempPublicaciones = temp.getPublicaciones();
+		for (Publicacion i: tempPublicaciones){
+			if (i.getId() == idP){
+				return i.getComentarios();
+			}
+		}
+		return null;
 	}
 	@Override
 	@Transactional(readOnly = true)

@@ -160,6 +160,7 @@ var app = (function () {
                 
                             </div>`
             $("#divPublicaciones").append(div);
+            publicacionID = pb.idP;
         })
     }
 
@@ -212,7 +213,7 @@ var app = (function () {
     }
 
     function cargarComentario(idP,idUPublicacion){
-        publicacionID = idP;
+
         apiclient.obtenerComentario(idUPublicacion,idP, pintarComentarios, localStorage.getItem("Authorization"))
     }
 
@@ -226,7 +227,7 @@ var app = (function () {
             return {idU: pb.idusuario, idP: pb.id}
         })
         lista.map(function (pb) {
-            console.log(pb);
+            publicacionID = pb.idP;
             cargarComentario(pb.idP,pb.idU);
         })
 
