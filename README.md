@@ -2,6 +2,7 @@
 [![CircleCI](https://circleci.com/gh/Social-Academic/Proyecto-ARSW-2020-2.svg?style=svg)](https://circleci.com/gh/Social-Academic/Proyecto-ARSW-2020-2) 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/1eede3bb5bad418eb750f8d64b8743fd)](https://www.codacy.com/gh/Social-Academic/Proyecto-ARSW-2020-2?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Social-Academic/Proyecto-ARSW-2020-2&amp;utm_campaign=Badge_Grade)
 [![Deployed to Heroku](https://www.herokucdn.com/deploy/button.png)](https://social-academic-2020.herokuapp.com/)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://socialacademy.azurewebsites.net/)
 
 
 ## Integrantes
@@ -16,6 +17,10 @@
 > En Social Academic va a poder tener su propio muro para poder publicar cosas de interes, ya sean fotos o texto, ademas va a poder ver en tiempo real que es lo que el coontacto publica, tambien va a poder tener un chat con cada amigo que tenga en la red, podra enviar fotos, textos y videos.
 >
 > Tambien podra ver su perfil, en donde podra ver las publicaciones que a publicado, en esta ventana de perfil podra editar la foto de perfil, infromacion personal y tambien podra acceder a los chats, ir al inicio, cambiar contraseña o ir al perfil de algun amigo.
+
+Nuestro manual de usuario se encuentra en el siguiente link:
+
+[Manual de Usuario Social Academy](https://cesar-villamil.gitbook.io/socialacademu/)
 >
 ## Historias de usuario 
 > #### 1. Publicar en el muro
