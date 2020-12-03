@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import edu.escuelaing.arsw.SOCIALACADEMIC.model.Amigo;
+import edu.escuelaing.arsw.SOCIALACADEMIC.model.Chat;
 import edu.escuelaing.arsw.SOCIALACADEMIC.model.Comentario;
 import edu.escuelaing.arsw.SOCIALACADEMIC.model.Publicacion;
 import org.springframework.web.multipart.MultipartFile;
@@ -36,4 +37,5 @@ public interface SocialAcademyService {
     int obtnerReaccionBien(int idUsuario, int idPublicacion);
     int obtnerReaccionMal(int idUsuario, int idPublicacion);
     List<Comentario> ontenerComentarios(int idUPublicacion, int idP);
+	Chat findChatById(int id);
 }

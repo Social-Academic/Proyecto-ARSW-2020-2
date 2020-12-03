@@ -18,6 +18,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		.antMatchers("/css/**").permitAll()
 		.antMatchers("/images/**").permitAll()
 		.antMatchers("/fonts/**").permitAll()
+		.antMatchers("/webjars/**").permitAll()
+		.antMatchers("/stompendpoint/**").permitAll()
 		.antMatchers("/").permitAll()
 		.antMatchers("/edit-profile-basic.html").permitAll()
 		.antMatchers("/edit-profile-password.html").permitAll()
