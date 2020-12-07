@@ -20,6 +20,7 @@ chat = (function (){
         });
     }
 
+    
     function getMensaje(){
         mensaje = $("#campoMensaje").val();
     }
